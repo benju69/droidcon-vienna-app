@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
-    package="com.nilhcem.droidconat"
+    package="at.droidcon.vienna2016"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
-        android:name="com.nilhcem.droidconat.DroidconApp"
+        android:name="at.droidcon.vienna2016.DroidconApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name="com.nilhcem.droidconat.ui.drawer.DrawerActivity"
+            android:name="at.droidcon.vienna2016.ui.drawer.DrawerActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -24,38 +24,41 @@
         </activity>
 
         <activity
-            android:name="com.nilhcem.droidconat.ui.sessions.list.SessionsListActivity"
-            android:parentActivityName="com.nilhcem.droidconat.ui.drawer.DrawerActivity">
+            android:name="at.droidcon.vienna2016.ui.sessions.list.SessionsListActivity"
+            android:parentActivityName="at.droidcon.vienna2016.ui.drawer.DrawerActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.nilhcem.droidconat.ui.drawer.DrawerActivity"/>
+                android:value="at.droidcon.vienna2016.ui.drawer.DrawerActivity"/>
         </activity>
 
         <activity
-            android:name="com.nilhcem.droidconat.ui.sessions.details.SessionDetailsActivity"
-            android:parentActivityName="com.nilhcem.droidconat.ui.drawer.DrawerActivity"
+            android:name="at.droidcon.vienna2016.ui.sessions.details.SessionDetailsActivity"
+            android:parentActivityName="at.droidcon.vienna2016.ui.drawer.DrawerActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.nilhcem.droidconat.ui.drawer.DrawerActivity"/>
+                android:value="at.droidcon.vienna2016.ui.drawer.DrawerActivity"/>
         </activity>
 
         <activity
-            android:name="com.nilhcem.droidconat.ui.venue.ZoomableImageActivity"
-            android:parentActivityName="com.nilhcem.droidconat.ui.drawer.DrawerActivity">
+            android:name="at.droidcon.vienna2016.ui.venue.ZoomableImageActivity"
+            android:parentActivityName="at.droidcon.vienna2016.ui.drawer.DrawerActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.nilhcem.droidconat.ui.drawer.DrawerActivity"/>
+                android:value="at.droidcon.vienna2016.ui.drawer.DrawerActivity"/>
         </activity>
 
         <receiver
-            android:name="com.nilhcem.droidconat.receiver.BootReceiver"
+            android:name="at.droidcon.vienna2016.receiver.BootReceiver"
             android:enabled="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
                 <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
             </intent-filter>
         </receiver>
-        <receiver android:name="com.nilhcem.droidconat.receiver.reminder.ReminderReceiver"/>
+        <receiver android:name="at.droidcon.vienna2016.receiver.reminder.ReminderReceiver"/>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="a957eccaa1baac2cd3e019c814f007c63cda8a6e" />
     </application>
 </manifest>

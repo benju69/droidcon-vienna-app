@@ -1,0 +1,97 @@
+package at.droidcon.vienna2016.ui.drawer;
+
+import android.os.Bundle;
+import android.support.annotation.IdRes;
+import android.support.annotation.StringRes;
+
+import at.droidcon.vienna2016.R;
+import at.droidcon.vienna2016.ui.BaseActivityPresenter;
+import at.droidcon.vienna2016.ui.schedule.pager.SchedulePagerFragmentBuilder;
+import at.droidcon.vienna2016.ui.settings.SettingsFragment;
+import at.droidcon.vienna2016.ui.speakers.list.SpeakersListFragment;
+import at.droidcon.vienna2016.ui.venue.VenueFragment;
+import at.droidcon.vienna2016.ui.tweets.TweetsListFragment;
+
+import icepick.State;
+
+public class DrawerPresenter extends BaseActivityPresenter<DrawerMvp.View> implements DrawerMvp.Presenter {
+
+    @State @StringRes int toolbarTitle;
+    @State @IdRes int selectedItemId;
+
+    public DrawerPresenter(DrawerMvp.View view) {
+        super(view);
+    }
+
+    @Override
+    public void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        if (savedInstanceState == null) {
+            onNavigationItemSelected(R.id.drawer_nav_home);
+        }
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        view.updateToolbarTitle(toolbarTitle);
+    }
+
+    @Override
+    public void onNavigationItemSelected(@IdRes int itemId) {
+        if (itemId != selectedItemId) {
+            switch (itemId) {
+                case R.id.drawer_nav_home:
+                    // TODO: Create home view
+                    view.showFragment(new SchedulePagerFragmentBuilder(false).build());
+                    toolbarTitle = R.string.drawer_nav_home;
+                    break;
+                case R.id.drawer_nav_schedule:
+                    view.showFragment(new SchedulePagerFragmentBuilder(false).build());
+                    toolbarTitle = R.string.drawer_nav_schedule;
+                    break;
+                case R.id.drawer_nav_agenda:
+                    view.showFragment(new SchedulePagerFragmentBuilder(true).build());
+                    toolbarTitle = R.string.drawer_nav_agenda;
+                    break;
+                case R.id.drawer_nav_speakers:
+                    view.showFragment(new SpeakersListFragment());
+                    toolbarTitle = R.string.drawer_nav_speakers;
+                    break;
+                case R.id.drawer_nav_tweets:
+                    view.showFragment(new TweetsListFragment());
+                    toolbarTitle = R.string.drawer_nav_tweets;
+                    break;
+                case R.id.drawer_nav_venue:
+                    view.showFragment(new VenueFragment());
+                    toolbarTitle = R.string.drawer_nav_venue;
+                    break;
+                case R.id.drawer_nav_settings:
+                    view.showFragment(new SettingsFragment());
+                    toolbarTitle = R.string.drawer_nav_settings;
+                    break;
+                default:
+                    throw new IllegalArgumentException();
+            }
+            view.hideTabLayout();
+            view.updateToolbarTitle(toolbarTitle);
+
+            selectedItemId = itemId;
+        }
+        view.closeNavigationDrawer();
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        if (view.isNavigationDrawerOpen()) {
+            view.closeNavigationDrawer();
+            return true;
+        } else if (toolbarTitle != R.string.drawer_nav_home) {
+            int firstItem = R.id.drawer_nav_home;
+            onNavigationItemSelected(firstItem);
+            view.selectDrawerMenuItem(firstItem);
+            return true;
+        }
+        return false;
+    }
+}
