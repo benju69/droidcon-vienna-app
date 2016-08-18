@@ -44,8 +44,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
         notifySessions = findPreference(R.string.settings_notify_key);
         appVersion = findPreference(R.string.settings_version_key);
         initPreferenceLink(R.string.settings_conf_key);
-        initPreferenceLink(R.string.settings_github_key);
+        initPreferenceLink(R.string.settings_sources_key);
         initPreferenceLink(R.string.settings_developer_key);
+        initPreferenceLink(R.string.settings_hacker_key);
     }
 
     private void initPresenter() {

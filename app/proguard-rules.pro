@@ -20,4 +20,4 @@
 -keepattributes SourceFile,LineNumberTable
 
 # Keep the BuildConfig
--keep class at.droidcon.droidconat.BuildConfig { *; }
+-keep class at.droidcon.vienna2016.BuildConfig { *; }

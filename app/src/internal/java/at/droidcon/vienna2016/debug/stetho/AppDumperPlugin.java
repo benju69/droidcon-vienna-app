@@ -56,7 +56,7 @@ public class AppDumperPlugin implements DumperPlugin {
 
     @Override
     public String getName() {
-        return "droidconat";
+        return "vienna2016";
     }
 
     @Override

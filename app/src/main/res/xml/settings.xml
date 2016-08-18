@@ -15,7 +15,7 @@
             android:title="@string/settings_about_conf_title"/>
 
         <Preference
-            android:key="@string/settings_github_key"
+            android:key="@string/settings_sources_key"
             android:summary="@string/settings_about_sources_summary"
             android:title="@string/settings_about_sources_title"/>
 
@@ -23,6 +23,11 @@
             android:key="@string/settings_developer_key"
             android:summary="@string/settings_about_developer_summary"
             android:title="@string/settings_about_developer_title"/>
+
+        <Preference
+            android:key="@string/settings_hacker_key"
+            android:summary="@string/settings_about_hacker_summary"
+            android:title="@string/settings_about_hacker_title"/>
 
         <Preference
             android:enabled="false"

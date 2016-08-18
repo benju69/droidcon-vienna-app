@@ -23,7 +23,7 @@ import org.robolectric.shadows.ShadowResolveInfo;
 import static com.google.common.truth.Truth.assertThat;
 
 @RunWith(RobolectricGradleTestRunner.class)
-@Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP, packageName = "at.droidcon.droidconat")
+@Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP, packageName = "at.droidcon.vienna2016")
 public class IntentsTest {
 
     private Activity activity;
