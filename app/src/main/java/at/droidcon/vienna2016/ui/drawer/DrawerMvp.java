@@ -27,5 +27,7 @@ public interface DrawerMvp {
 
     interface Presenter {
         void onNavigationItemSelected(@IdRes int itemId);
+
+        void onShow();
     }
 }

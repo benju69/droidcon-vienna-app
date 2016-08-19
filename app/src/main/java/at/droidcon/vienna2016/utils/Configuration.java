@@ -1,4 +1,4 @@
-package at.droidcon.vienna2016.config;
+package at.droidcon.vienna2016.utils;
 
 /**
  * Created by helmuth on 19/08/16.
@@ -8,7 +8,7 @@ package at.droidcon.vienna2016.config;
  * shall be a home entry.
  */
 
-public interface ConfigProvider {
+public interface Configuration {
     public void refresh();
     public boolean getBoolean(String key);
     public long getLong(String key);

@@ -8,6 +8,7 @@ import at.droidcon.vienna2016.data.database.dao.SessionsDao;
 import at.droidcon.vienna2016.receiver.reminder.SessionsReminder;
 import at.droidcon.vienna2016.ui.BaseActivityPresenter;
 
+import at.droidcon.vienna2016.utils.Analytics;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import timber.log.Timber;
@@ -17,12 +18,14 @@ public class SessionDetailsPresenter extends BaseActivityPresenter<SessionDetail
     private final Session session;
     private final SessionsDao sessionsDao;
     private final SessionsReminder sessionsReminder;
+    private final Analytics analytics;
 
-    public SessionDetailsPresenter(SessionDetailsMvp.View view, Session session, SessionsDao sessionsDao, SessionsReminder sessionsReminder) {
+    public SessionDetailsPresenter(SessionDetailsMvp.View view, Session session, SessionsDao sessionsDao, SessionsReminder sessionsReminder, Analytics analytics) {
         super(view);
         this.session = session;
         this.sessionsDao = sessionsDao;
         this.sessionsReminder = sessionsReminder;
+        this.analytics = analytics;
     }
 
     @Override
@@ -58,6 +61,7 @@ public class SessionDetailsPresenter extends BaseActivityPresenter<SessionDetail
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(shouldInsert -> {
                     if (shouldInsert) {
+                        analytics.logSelectSession(session.getId());
                         view.showSnackbarMessage(R.string.session_details_added);
                     } else {
                         view.showSnackbarMessage(R.string.session_details_removed);

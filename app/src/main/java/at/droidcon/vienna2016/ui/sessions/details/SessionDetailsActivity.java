@@ -21,6 +21,7 @@ import at.droidcon.vienna2016.data.database.dao.SessionsDao;
 import at.droidcon.vienna2016.receiver.reminder.SessionsReminder;
 import at.droidcon.vienna2016.ui.BaseActivity;
 import at.droidcon.vienna2016.ui.speakers.details.SpeakerDetailsDialogFragment;
+import at.droidcon.vienna2016.utils.Analytics;
 import at.droidcon.vienna2016.utils.Animations;
 import at.droidcon.vienna2016.utils.App;
 import at.droidcon.vienna2016.utils.Strings;
@@ -46,6 +47,7 @@ public class SessionDetailsActivity extends BaseActivity<SessionDetailsPresenter
     @Inject Picasso picasso;
     @Inject SessionsDao sessionsDao;
     @Inject SessionsReminder sessionsReminder;
+    @Inject Analytics analytics;
 
     @BindView(R.id.session_details_layout) View layout;
     @BindView(R.id.session_details_toolbar) Toolbar toolbar;
@@ -62,7 +64,7 @@ public class SessionDetailsActivity extends BaseActivity<SessionDetailsPresenter
 
     @Override
     protected SessionDetailsPresenter newPresenter() {
-        return new SessionDetailsPresenter(this, session, sessionsDao, sessionsReminder);
+        return new SessionDetailsPresenter(this, session, sessionsDao, sessionsReminder, analytics);
     }
 
     @Override
@@ -138,6 +140,7 @@ public class SessionDetailsActivity extends BaseActivity<SessionDetailsPresenter
     }
 
     private void bindTalkInfo(Session session) {
+        analytics.logViewSession(session.getId(), session.getTitle());
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT);
         String day = session.getFromTime().format(DateTimeFormatter.ofPattern(getString(R.string.session_details_talk_info_date_pattern)));
         String fromTime = session.getFromTime().format(timeFormatter);
@@ -154,6 +157,7 @@ public class SessionDetailsActivity extends BaseActivity<SessionDetailsPresenter
     }
 
     private void openSpeakerDetails(Speaker speaker) {
+        analytics.logViewSessionSpeaker(speaker.getId(), speaker.getName());
         SpeakerDetailsDialogFragment.show(speaker, getSupportFragmentManager());
     }
 }

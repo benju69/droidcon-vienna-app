@@ -9,6 +9,7 @@ import android.support.v7.preference.PreferenceFragmentCompat;
 import at.droidcon.vienna2016.DroidconApp;
 import at.droidcon.vienna2016.R;
 import at.droidcon.vienna2016.receiver.reminder.SessionsReminder;
+import at.droidcon.vienna2016.utils.Analytics;
 import at.droidcon.vienna2016.utils.Intents;
 
 import javax.inject.Inject;
@@ -16,6 +17,7 @@ import javax.inject.Inject;
 public class SettingsFragment extends PreferenceFragmentCompat implements SettingsMvp.View {
 
     @Inject SessionsReminder sessionsReminder;
+    @Inject Analytics analytics;
 
     private SettingsPresenter presenter;
     private CheckBoxPreference notifySessions;
@@ -51,7 +53,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Settin
 
     private void initPresenter() {
         DroidconApp.get(getContext()).component().inject(this);
-        presenter = new SettingsPresenter(getContext(), this, sessionsReminder);
+        presenter = new SettingsPresenter(getContext(), this, sessionsReminder, analytics);
         presenter.onCreate();
     }
 

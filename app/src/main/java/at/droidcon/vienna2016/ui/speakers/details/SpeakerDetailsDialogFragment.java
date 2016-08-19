@@ -19,6 +19,7 @@ import at.droidcon.vienna2016.DroidconApp;
 import at.droidcon.vienna2016.R;
 import at.droidcon.vienna2016.data.app.model.Speaker;
 import at.droidcon.vienna2016.ui.core.picasso.CircleTransformation;
+import at.droidcon.vienna2016.utils.Analytics;
 import at.droidcon.vienna2016.utils.Intents;
 import com.squareup.picasso.Picasso;
 
@@ -31,6 +32,7 @@ import butterknife.Unbinder;
 public class SpeakerDetailsDialogFragment extends AppCompatDialogFragment {
 
     @Inject Picasso picasso;
+    @Inject Analytics analytics;
 
     @BindView(R.id.speaker_details_name) TextView name;
     @BindView(R.id.speaker_details_title) TextView title;
@@ -81,6 +83,7 @@ public class SpeakerDetailsDialogFragment extends AppCompatDialogFragment {
     }
 
     private void bindSpeaker(Speaker speaker) {
+        analytics.logViewSpeaker(speaker.getId(), speaker.getName());
         name.setText(speaker.getName());
         title.setText(speaker.getTitle());
         bio.setText(speaker.getBio());

@@ -3,18 +3,18 @@ package at.droidcon.vienna2016.core.firebase;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 
 import at.droidcon.vienna2016.R;
-import at.droidcon.vienna2016.config.ConfigProvider;
+import at.droidcon.vienna2016.utils.Configuration;
 
 /**
  * Created by helmuth on 19/08/16.
  *
- * This class implements a ConfigProvider using Firebase Remote Config.
+ * This class implements a Configuration using Firebase Remote Config.
  */
 
-public class FirebaseConfigProvider implements ConfigProvider {
+public class FirebaseConfiguration implements Configuration {
     private FirebaseRemoteConfig cfg;
 
-    public FirebaseConfigProvider(FirebaseRemoteConfig cfg) {
+    public FirebaseConfiguration(FirebaseRemoteConfig cfg) {
         this.cfg = cfg;
         // load default values
         cfg.setDefaults(R.xml.defaults);

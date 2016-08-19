@@ -42,7 +42,19 @@ public class DrawerActivity extends BaseActivity<DrawerPresenter> implements Dra
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close);
         drawer.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
+        drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) { }
 
+            @Override
+            public void onDrawerOpened(View drawerView) { presenter.onShow(); }
+
+            @Override
+            public void onDrawerClosed(View drawerView) { }
+
+            @Override
+            public void onDrawerStateChanged(int newState) { }
+        });
         navigationView.setNavigationItemSelectedListener(item -> {
             presenter.onNavigationItemSelected(item.getItemId());
             return true;

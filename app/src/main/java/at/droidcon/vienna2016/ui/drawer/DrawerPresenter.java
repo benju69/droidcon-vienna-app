@@ -8,7 +8,8 @@ import javax.inject.Inject;
 
 import at.droidcon.vienna2016.DroidconApp;
 import at.droidcon.vienna2016.R;
-import at.droidcon.vienna2016.config.ConfigProvider;
+import at.droidcon.vienna2016.utils.Analytics;
+import at.droidcon.vienna2016.utils.Configuration;
 import at.droidcon.vienna2016.ui.BaseActivityPresenter;
 import at.droidcon.vienna2016.ui.schedule.pager.SchedulePagerFragmentBuilder;
 import at.droidcon.vienna2016.ui.settings.SettingsFragment;
@@ -22,7 +23,8 @@ public class DrawerPresenter extends BaseActivityPresenter<DrawerMvp.View> imple
 
     @State @StringRes int toolbarTitle;
     @State @IdRes int selectedItemId;
-    @Inject ConfigProvider cfg;
+    @Inject Configuration cfg;
+    @Inject Analytics analytics;
 
     public DrawerPresenter(DrawerMvp.View view) {
         super(view);
@@ -38,22 +40,34 @@ public class DrawerPresenter extends BaseActivityPresenter<DrawerMvp.View> imple
             return R.id.drawer_nav_schedule;
         }
     }
+
+    private void checkHiddenEntries() {
+        cfg.refresh();
+        view.showDrawerMenuItem(R.id.drawer_nav_home, cfg.getBoolean("show_home_screen"));
+        view.showDrawerMenuItem(R.id.drawer_nav_tweets, cfg.getBoolean("show_tweets_screen"));
+    }
+
     @Override
     public void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        cfg.refresh();
         // check if the home and twitter screen shall be shown
-        view.showDrawerMenuItem(R.id.drawer_nav_home, cfg.getBoolean("show_home_screen"));
-        view.showDrawerMenuItem(R.id.drawer_nav_tweets, cfg.getBoolean("show_tweets_screen"));
+        checkHiddenEntries();
         if (savedInstanceState == null) {
             onNavigationItemSelected(getFirstItem());
+            view.selectDrawerMenuItem(getFirstItem());
         }
     }
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+        checkHiddenEntries();
         view.updateToolbarTitle(toolbarTitle);
+    }
+
+    @Override
+    public void onShow() {
+        checkHiddenEntries();
     }
 
     @Override
@@ -64,29 +78,36 @@ public class DrawerPresenter extends BaseActivityPresenter<DrawerMvp.View> imple
                     // TODO: Create home view
                     view.showFragment(new SchedulePagerFragmentBuilder(false).build());
                     toolbarTitle = R.string.drawer_nav_home;
+                    analytics.logViewScreen("home");
                     break;
                 case R.id.drawer_nav_schedule:
                     view.showFragment(new SchedulePagerFragmentBuilder(false).build());
                     toolbarTitle = R.string.drawer_nav_schedule;
+                    analytics.logViewScreen("personal_schedule");
                     break;
                 case R.id.drawer_nav_agenda:
                     view.showFragment(new SchedulePagerFragmentBuilder(true).build());
                     toolbarTitle = R.string.drawer_nav_agenda;
+                    analytics.logViewScreen("general_schedule");
                     break;
                 case R.id.drawer_nav_speakers:
                     view.showFragment(new SpeakersListFragment());
+                    analytics.logViewScreen("speakers");
                     toolbarTitle = R.string.drawer_nav_speakers;
                     break;
                 case R.id.drawer_nav_tweets:
                     view.showFragment(new TweetsListFragment());
+                    analytics.logViewScreen("tweets");
                     toolbarTitle = R.string.drawer_nav_tweets;
                     break;
                 case R.id.drawer_nav_venue:
                     view.showFragment(new VenueFragment());
+                    analytics.logViewScreen("venue");
                     toolbarTitle = R.string.drawer_nav_venue;
                     break;
                 case R.id.drawer_nav_settings:
                     view.showFragment(new SettingsFragment());
+                    analytics.logViewScreen("settings");
                     toolbarTitle = R.string.drawer_nav_settings;
                     break;
                 default:

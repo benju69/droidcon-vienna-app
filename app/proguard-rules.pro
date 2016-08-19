@@ -17,7 +17,7 @@
 #}
 
 -printmapping mappings.txt
--keepattributes SourceFile,LineNumberTable
+-keepattributes SourceFile,LineNumberTable,InnerClasses,EnclosingMethod
 
 # Keep the BuildConfig
 -keep class at.droidcon.vienna2016.BuildConfig { *; }
