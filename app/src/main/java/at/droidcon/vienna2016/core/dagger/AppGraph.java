@@ -2,6 +2,7 @@ package at.droidcon.vienna2016.core.dagger;
 
 import at.droidcon.vienna2016.receiver.BootReceiver;
 import at.droidcon.vienna2016.ui.drawer.DrawerActivity;
+import at.droidcon.vienna2016.ui.drawer.DrawerPresenter;
 import at.droidcon.vienna2016.ui.schedule.day.ScheduleDayFragment;
 import at.droidcon.vienna2016.ui.schedule.pager.SchedulePagerFragment;
 import at.droidcon.vienna2016.ui.sessions.details.SessionDetailsActivity;
@@ -16,6 +17,8 @@ import at.droidcon.vienna2016.ui.speakers.list.SpeakersListFragment;
 public interface AppGraph {
 
     void inject(DrawerActivity activity);
+
+    void inject(DrawerPresenter presenter);
 
     void inject(SchedulePagerFragment fragment);
 

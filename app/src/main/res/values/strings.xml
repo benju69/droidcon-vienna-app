@@ -56,8 +56,8 @@
     <string name="settings_about_version">Version</string>
     <string name="settings_about_conf_title">droidcon Vienna</string>
     <string name="settings_about_sources_title">Source code</string>
-    <string name="settings_about_developer_title">Good parts done by</string>
-    <string name="settings_about_hacker_title">Bugs inserted by</string>
+    <string name="settings_about_developer_title">Good parts by</string>
+    <string name="settings_about_hacker_title">Bugs made by</string>
 
     <!-- Sessions reminder -->
     <string name="reminder_about_to_start">Session %1$s is about to start!</string>

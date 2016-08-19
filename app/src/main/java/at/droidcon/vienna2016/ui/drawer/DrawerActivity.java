@@ -1,5 +1,6 @@
 package at.droidcon.vienna2016.ui.drawer;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
@@ -68,6 +69,14 @@ public class DrawerActivity extends BaseActivity<DrawerPresenter> implements Dra
     public void closeNavigationDrawer() {
         drawer.closeDrawer(GravityCompat.START);
     }
+
+    @Override
+    public void showDrawerMenuItem(@IdRes int id, boolean show) {
+        navigationView.getMenu().findItem(id).setVisible(show);
+    }
+
+    @Override
+    public Context getContext() { return this; }
 
     @Override
     public void showFragment(Fragment fragment) {

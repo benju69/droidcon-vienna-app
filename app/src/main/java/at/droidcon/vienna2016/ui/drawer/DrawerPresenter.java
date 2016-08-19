@@ -4,7 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
 
+import javax.inject.Inject;
+
+import at.droidcon.vienna2016.DroidconApp;
 import at.droidcon.vienna2016.R;
+import at.droidcon.vienna2016.config.ConfigProvider;
 import at.droidcon.vienna2016.ui.BaseActivityPresenter;
 import at.droidcon.vienna2016.ui.schedule.pager.SchedulePagerFragmentBuilder;
 import at.droidcon.vienna2016.ui.settings.SettingsFragment;
@@ -18,16 +22,31 @@ public class DrawerPresenter extends BaseActivityPresenter<DrawerMvp.View> imple
 
     @State @StringRes int toolbarTitle;
     @State @IdRes int selectedItemId;
+    @Inject ConfigProvider cfg;
 
     public DrawerPresenter(DrawerMvp.View view) {
         super(view);
+        DroidconApp.get(view.getContext()).component().inject(this);
     }
 
+    private @IdRes int getFirstItem() {
+        cfg.refresh();
+        if (cfg.getBoolean("show_home_screen")) {
+            return R.id.drawer_nav_home;
+        }
+        else {
+            return R.id.drawer_nav_schedule;
+        }
+    }
     @Override
     public void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
+        cfg.refresh();
+        // check if the home and twitter screen shall be shown
+        view.showDrawerMenuItem(R.id.drawer_nav_home, cfg.getBoolean("show_home_screen"));
+        view.showDrawerMenuItem(R.id.drawer_nav_tweets, cfg.getBoolean("show_tweets_screen"));
         if (savedInstanceState == null) {
-            onNavigationItemSelected(R.id.drawer_nav_home);
+            onNavigationItemSelected(getFirstItem());
         }
     }
 
@@ -86,11 +105,13 @@ public class DrawerPresenter extends BaseActivityPresenter<DrawerMvp.View> imple
         if (view.isNavigationDrawerOpen()) {
             view.closeNavigationDrawer();
             return true;
-        } else if (toolbarTitle != R.string.drawer_nav_home) {
-            int firstItem = R.id.drawer_nav_home;
-            onNavigationItemSelected(firstItem);
-            view.selectDrawerMenuItem(firstItem);
-            return true;
+        } else {
+            int firstItem = getFirstItem();
+            if (selectedItemId != firstItem) {
+                onNavigationItemSelected(firstItem);
+                view.selectDrawerMenuItem(firstItem);
+                return true;
+            }
         }
         return false;
     }

@@ -1,5 +1,6 @@
 package at.droidcon.vienna2016.ui.drawer;
 
+import android.content.Context;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,10 @@ public interface DrawerMvp {
         void selectDrawerMenuItem(@IdRes int id);
 
         void hideTabLayout();
+
+        void showDrawerMenuItem(@IdRes int id, boolean show);
+
+        Context getContext();
     }
 
     interface Presenter {
