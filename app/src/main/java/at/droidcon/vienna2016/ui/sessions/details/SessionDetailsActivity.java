@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -61,6 +62,7 @@ public class SessionDetailsActivity extends BaseActivity<SessionDetailsPresenter
     @BindView(R.id.session_details_speakers_title) TextView speakersTitle;
     @BindView(R.id.session_details_speakers_container) ViewGroup speakersContainer;
     @BindView(R.id.session_details_fab) FloatingActionButton fab;
+    @BindView(R.id.session_details_feedback) Button feedback;
 
     @Override
     protected SessionDetailsPresenter newPresenter() {
@@ -119,6 +121,7 @@ public class SessionDetailsActivity extends BaseActivity<SessionDetailsPresenter
         }
 
         fab.setOnClickListener(v -> presenter.onFloatingActionButtonClicked());
+        feedback.setOnClickListener(v -> openSessionFeedback(session));
     }
 
     @Override
@@ -159,5 +162,9 @@ public class SessionDetailsActivity extends BaseActivity<SessionDetailsPresenter
     private void openSpeakerDetails(Speaker speaker) {
         analytics.logViewSessionSpeaker(speaker.getId(), speaker.getName());
         SpeakerDetailsDialogFragment.show(speaker, getSupportFragmentManager());
+    }
+
+    private void openSessionFeedback(Session session) {
+        SessionFeedbackDialogFragment.show(session, getSupportFragmentManager());
     }
 }

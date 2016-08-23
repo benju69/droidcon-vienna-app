@@ -106,6 +106,12 @@
                 android:orientation="vertical"
                 tools:background="?attr/colorPrimaryDark"
                 tools:layout_height="48dp"/>
+
+            <Button
+                android:id="@+id/session_details_feedback"
+                style="@style/Session.Details.Button"
+                android:text="Feedback"
+                />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 

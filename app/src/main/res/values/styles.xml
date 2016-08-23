@@ -54,6 +54,48 @@
         <item name="android:textSize">15sp</item>
     </style>
 
+    <style name="Session.Details.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_margin">@dimen/activity_margin</item>
+    </style>
+    <style name="Session.Feedback" />
+
+    <style name="Session.Feedback.Question">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/activity_margin</item>
+        <item name="android:textColor">@color/primary_text</item>
+    </style>
+
+    <style name="Session.Feedback.InstructionLeft">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">start</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:layout_marginStart">@dimen/activity_margin</item>
+        <item name="android:layout_marginLeft">@dimen/activity_margin</item>
+    </style>
+
+    <style name="Session.Feedback.InstructionRight">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">end</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:layout_marginEnd">@dimen/activity_margin</item>
+        <item name="android:layout_marginRight">@dimen/activity_margin</item>
+    </style>
+
+    <style name="Session.Feedback.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_margin">@dimen/activity_margin</item>
+        <item name="android:textColor">@color/accent</item>
+    </style>
     <!-- Speaker details -->
     <style name="Speaker"/>
 

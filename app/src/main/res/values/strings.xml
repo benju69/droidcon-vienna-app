@@ -40,6 +40,10 @@
     <!-- Speaker details -->
     <string name="speaker_details_hide">Hide</string>
 
+    <!-- Session feedback -->
+    <string name="session_feedback_cancel">Cancel</string>
+    <string name="session_feedback_submit">Submit</string>
+
     <!-- Venue -->
     <string name="venue_see_location">Locate on map</string>
     <string name="venue_see_location_error">Error opening map.\nDo you have Google Maps installed?</string>
