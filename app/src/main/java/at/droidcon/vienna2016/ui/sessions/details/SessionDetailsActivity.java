@@ -27,6 +27,9 @@ import at.droidcon.vienna2016.utils.Animations;
 import at.droidcon.vienna2016.utils.App;
 import at.droidcon.vienna2016.utils.Strings;
 import at.droidcon.vienna2016.utils.Views;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.squareup.picasso.Picasso;
 
 import org.threeten.bp.format.DateTimeFormatter;
@@ -121,7 +124,7 @@ public class SessionDetailsActivity extends BaseActivity<SessionDetailsPresenter
         }
 
         fab.setOnClickListener(v -> presenter.onFloatingActionButtonClicked());
-        feedback.setOnClickListener(v -> openSessionFeedback(session));
+        feedback.setOnClickListener(v -> openSessionFeedbackForm());
     }
 
     @Override
@@ -164,7 +167,7 @@ public class SessionDetailsActivity extends BaseActivity<SessionDetailsPresenter
         SpeakerDetailsDialogFragment.show(speaker, getSupportFragmentManager());
     }
 
-    private void openSessionFeedback(Session session) {
+    private void openSessionFeedbackForm() {
         SessionFeedbackDialogFragment.show(session, getSupportFragmentManager());
     }
 }

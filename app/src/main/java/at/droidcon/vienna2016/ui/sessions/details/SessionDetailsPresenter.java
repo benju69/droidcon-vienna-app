@@ -2,8 +2,13 @@ package at.droidcon.vienna2016.ui.sessions.details;
 
 import android.os.Bundle;
 
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import at.droidcon.vienna2016.R;
 import at.droidcon.vienna2016.data.app.model.Session;
+import at.droidcon.vienna2016.data.app.model.SessionFeedback;
 import at.droidcon.vienna2016.data.database.dao.SessionsDao;
 import at.droidcon.vienna2016.receiver.reminder.SessionsReminder;
 import at.droidcon.vienna2016.ui.BaseActivityPresenter;

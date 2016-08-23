@@ -3,6 +3,9 @@ package at.droidcon.vienna2016.core.dagger.module;
 import android.app.Application;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 
 import javax.inject.Singleton;
@@ -31,5 +34,15 @@ public final class UtilsModule {
         return new FirebaseAnalyticsWrapper(
                 FirebaseAnalytics.getInstance(context)
         );
+    }
+
+    @Provides @Singleton
+    DatabaseReference provideDatabaseReference() {
+        return FirebaseDatabase.getInstance().getReference();
+    }
+
+    @Provides @Singleton
+    FirebaseInstanceId provideFirebaseInstanceIc() {
+        return FirebaseInstanceId.getInstance();
     }
 }

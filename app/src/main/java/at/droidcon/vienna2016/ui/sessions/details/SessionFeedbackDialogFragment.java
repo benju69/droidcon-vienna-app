@@ -10,17 +10,21 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import javax.inject.Inject;
 
 import at.droidcon.vienna2016.DroidconApp;
 import at.droidcon.vienna2016.R;
 import at.droidcon.vienna2016.data.app.model.Session;
-import at.droidcon.vienna2016.ui.speakers.details.SpeakerDetailsDialogFragment;
+import at.droidcon.vienna2016.data.app.model.SessionFeedback;
 import at.droidcon.vienna2016.utils.Analytics;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,11 +37,13 @@ import butterknife.Unbinder;
 public class SessionFeedbackDialogFragment extends AppCompatDialogFragment {
 
     @Inject Analytics analytics;
+    @Inject FirebaseInstanceId instanceId;
+    @Inject DatabaseReference dbRef;
 
     @BindView(R.id.session_feedback_title) TextView title;
-    @BindView(R.id.session_feedback_talk) RatingBar talk;
-    @BindView(R.id.session_feedback_speaker) RatingBar speaker;
-    @BindView(R.id.session_feedback_content) RatingBar content;
+    @BindView(R.id.session_feedback_talk) RatingBar ratingTalk;
+    @BindView(R.id.session_feedback_speaker) RatingBar ratingSpeaker;
+    @BindView(R.id.session_feedback_content) RatingBar ratingContent;
 
     private Unbinder unbinder;
 
@@ -67,7 +73,7 @@ public class SessionFeedbackDialogFragment extends AppCompatDialogFragment {
         bindSession(getArguments().getParcelable(EXTRA_SESSION));
         return new AlertDialog.Builder(getContext())
                 .setView(view)
-                .setPositiveButton(R.string.session_feedback_submit, (dialog, which) -> dismiss())
+                .setPositiveButton(R.string.session_feedback_submit, (dialog, which) -> saveFeedback())
                 .setNegativeButton(R.string.session_feedback_cancel, (dialog, which) -> dismiss())
                 .create();
     }
@@ -78,9 +84,47 @@ public class SessionFeedbackDialogFragment extends AppCompatDialogFragment {
         super.onDestroyView();
     }
 
-    private void bindSession(Session session) {
+    public void saveFeedback() {
+        // get application identifier
+        String id = instanceId.getId();
+        // get floats for feedback
+        float sessionRating = ratingTalk.getRating();
+        float speakerRating = ratingSpeaker.getRating();
+        float contentLevel = ratingContent.getRating();
+        // create model object
+        SessionFeedback feedback = new SessionFeedback(session, sessionRating, speakerRating, contentLevel);
+        // write into the reference object
+        dbRef.child("feedback")
+                .child(id)
+                .child(String.valueOf(session.getId()))
+                .setValue(feedback, (err, ref) -> {
+                    if (err != null) { System.console().printf("Firebase error: %s\n", err.getMessage()); }
+                });
+    }
+
+    public void bindSession(Session session) {
         this.session = session;
         // analytics.logViewSpeaker(speaker.getId(), speaker.getName());
         title.setText(session.getTitle());
+        // load data from firebase
+        String id = instanceId.getId();
+        dbRef.child("feedback")
+                .child(id)
+                .child(String.valueOf(session.getId()))
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                SessionFeedback feedback = dataSnapshot.getValue(SessionFeedback.class);
+                if (feedback != null) {
+                    // write the values into the form
+                    ratingTalk.setRating(feedback.getSessionRating());
+                    ratingSpeaker.setRating(feedback.getSpeakerRating());
+                    ratingContent.setRating(feedback.getContentLevel());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) { }
+        });
     }
 }
