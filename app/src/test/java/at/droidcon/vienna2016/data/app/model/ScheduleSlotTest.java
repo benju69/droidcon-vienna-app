@@ -24,7 +24,7 @@ public class ScheduleSlotTest {
     public void should_restore_from_parcelable() {
         // Given
         LocalDateTime time = LocalDateTime.now();
-        List<Session> sessions = Arrays.asList(new Session(1, null, null, null, null, null, null), new Session(2, null, null, null, null, null, null), new Session(3, null, null, null, null, null, null));
+        List<Session> sessions = Arrays.asList(new Session(1, null, null, null, null, null, null, null), new Session(2, null, null, null, null, null, null, null), new Session(3, null, null, null, null, null, null, null));
         ScheduleSlot slot = new ScheduleSlot(time, sessions);
 
         // When

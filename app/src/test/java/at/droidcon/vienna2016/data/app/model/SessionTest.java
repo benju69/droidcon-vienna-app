@@ -26,7 +26,7 @@ public class SessionTest {
         List<Speaker> speakers = singletonList(new Speaker(1, null, null, null, null, null, null, null, null, null, null));
         LocalDateTime fromTime = LocalDateTime.now().minusDays(1);
         LocalDateTime toTime = fromTime.plusMinutes(45);
-        Session session = new Session(42, "ROOM1", speakers, "TITLE", "DESCRIPTION", fromTime, toTime);
+        Session session = new Session(42, "ROOM1", speakers, "TITLE", "DESCRIPTION", fromTime, toTime, null);
 
         // When
         Parcel parcel = Parcel.obtain();

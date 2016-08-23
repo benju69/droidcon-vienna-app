@@ -44,7 +44,7 @@ public class SelectedSessionsMemoryTest {
         Map<LocalDateTime, Integer> map = new HashMap<>();
         map.put(now, 1);
         memory.setSelectedSessions(map);
-        Session toAdd = new Session(3, null, null, null, null, now, now.plusMinutes(30));
+        Session toAdd = new Session(3, null, null, null, null, now, now.plusMinutes(30), null);
 
         // When
         assertThat(memory.get(now)).isEqualTo(1);

@@ -48,7 +48,7 @@ public class DbMapperTest {
     public void should_convert_db_sessions_to_app_sessions() {
         // Given
         when(adapter.fromText("now")).thenReturn(now);
-        at.droidcon.vienna2016.data.database.model.Session session = new at.droidcon.vienna2016.data.database.model.Session(2, "now", 10, 3, "[1]", "title", "description");
+        at.droidcon.vienna2016.data.database.model.Session session = new at.droidcon.vienna2016.data.database.model.Session(2, "now", 10, 3, "[1]", "title", "description", null);
         List<at.droidcon.vienna2016.data.database.model.Session> sessions = singletonList(session);
         Map<Integer, Speaker> speakersMap = new HashMap<>();
         Speaker speaker = new Speaker(1, "name", null, null, null, null, null, null, null, null, null);
@@ -70,7 +70,7 @@ public class DbMapperTest {
     public void should_convert_app_session_to_db_session() {
         // Given
         List<Speaker> speakers = singletonList(new Speaker(7, null, null, null, null, null, null, null, null, null, null));
-        Session session = new Session(11, Room.NONE.label, speakers, "title", "description", now, now.plusMinutes(45));
+        Session session = new Session(11, Room.NONE.label, speakers, "title", "description", now, now.plusMinutes(45), null);
 
         // When
         at.droidcon.vienna2016.data.database.model.Session result = dbMapper.fromAppSession(session);

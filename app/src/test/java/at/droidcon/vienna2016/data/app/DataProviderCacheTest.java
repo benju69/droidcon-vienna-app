@@ -23,8 +23,8 @@ public class DataProviderCacheTest {
 
     private final DataProviderCache cache = new DataProviderCache();
 
-    private final Session session1 = new Session(1, null, null, null, null, null, null);
-    private final Session session2 = new Session(2, null, null, null, null, null, null);
+    private final Session session1 = new Session(1, null, null, null, null, null, null, null);
+    private final Session session2 = new Session(2, null, null, null, null, null, null, null);
     private final List<Session> sessions = Arrays.asList(session1, session2);
 
     private final Speaker speaker1 = new Speaker(1, null, null, null, null, null, null, null, null, null, null);

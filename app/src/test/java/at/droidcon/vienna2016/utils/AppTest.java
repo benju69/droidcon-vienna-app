@@ -58,8 +58,8 @@ public class AppTest {
     public void should_return_null_photourl_when_giving_invalid_data() {
         // Given
         Session session1 = null;
-        Session session2 = new Session(3, "room1", null, "title", "description", null, null);
-        Session session3 = new Session(3, "room1", new ArrayList<>(), "title", "description", null, null);
+        Session session2 = new Session(3, "room1", null, "title", "description", null, null, null);
+        Session session3 = new Session(3, "room1", new ArrayList<>(), "title", "description", null, null, null);
 
         // When
         String result1 = App.getPhotoUrl(session1);
@@ -77,7 +77,7 @@ public class AppTest {
         // Given
         Speaker speaker1 = new Speaker(1, null, null, null, null, null, null, null, null, null, "photo1");
         Speaker speaker2 = new Speaker(2, null, null, null, null, null, null, null, null, null, "photo2");
-        Session session = new Session(1, null, Arrays.asList(speaker1, speaker2), null, null, null, null);
+        Session session = new Session(1, null, Arrays.asList(speaker1, speaker2), null, null, null, null, null);
 
         // When
         String photoUrl = App.getPhotoUrl(session);

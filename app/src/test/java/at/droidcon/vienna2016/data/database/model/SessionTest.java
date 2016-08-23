@@ -22,7 +22,7 @@ public class SessionTest {
     @Test
     public void should_create_content_values_for_sqlite() {
         // Given
-        Session session = new Session(10, "startAt", 45, 3, "[3, 4]", "title", "description");
+        Session session = new Session(10, "startAt", 45, 3, "[3, 4]", "title", "description", null);
 
         // When
         ContentValues result = Session.createContentValues(session);

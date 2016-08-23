@@ -69,7 +69,7 @@ public class NetworkMapperTest {
     public void should_convert_network_sessions_to_app_sessions() {
         // Given
         LocalDateTime startAt = LocalDateTime.now();
-        Session session = new Session(1, startAt, 20, Room.NONE.id, singletonList(10), "title", "description");
+        Session session = new Session(1, startAt, 20, Room.NONE.id, singletonList(10), "title", "description", null);
         Map<Integer, at.droidcon.vienna2016.data.app.model.Speaker> speakersMap = new HashMap<>();
         speakersMap.put(10, new at.droidcon.vienna2016.data.app.model.Speaker(10, "ten", null, null, null, null, null, null, null, null, null));
 
