@@ -49,7 +49,10 @@ public class SessionsListEntry extends BaseViewHolder {
         description.setText(session.getDescription());
 
         int selectedRes = isSelected ? R.drawable.sessions_list_entry_selected : R.drawable.sessions_list_entry_default;
-        selectedState.setImageDrawable(ContextCompat.getDrawable(selectedState.getContext(), selectedRes));
+        selectedState.setImageResource(selectedRes);
+        // As of Android Support Library 23.3.0, support vector drawables can only be loaded
+        // via app:srcCompat or setImageResource().
+        // selectedState.setImageDrawable(ContextCompat.getDrawable(selectedState.getContext(), selectedRes));
 
         if (showTime) {
             DateTimeFormatter timeFormatter = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT);

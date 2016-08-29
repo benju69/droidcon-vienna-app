@@ -6,6 +6,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.iid.FirebaseInstanceId;
 
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.LocalDateTime;
+import org.threeten.bp.LocalTime;
+import org.threeten.bp.ZoneId;
+
 import at.droidcon.vienna2016.R;
 import at.droidcon.vienna2016.data.app.model.Session;
 import at.droidcon.vienna2016.data.app.model.SessionFeedback;
@@ -42,6 +47,12 @@ public class SessionDetailsPresenter extends BaseActivityPresenter<SessionDetail
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(isSelected -> view.updateFabButton(isSelected, false),
                         throwable -> Timber.e(throwable, "Error getting selected session state"));
+        // check if session has started already
+        ZoneId confZone = ZoneId.of("Europe/Vienna");
+        LocalDateTime now = LocalDateTime.now(confZone);
+        // TODO: Change back to realtime
+        now = LocalDateTime.of(LocalDate.of(2016, 9, 16), LocalTime.now(confZone));
+        view.enableFeedback(now.compareTo(session.getFromTime()) > 0);
     }
 
     @Override

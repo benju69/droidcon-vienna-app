@@ -88,7 +88,10 @@ public class ScheduleDayEntry extends BaseViewHolder {
         bindSessionSpeakers(session);
 
         int selectedRes = isSelected ? R.drawable.sessions_list_selected : R.drawable.sessions_list_default;
-        sessionSelectedState.setImageDrawable(ContextCompat.getDrawable(sessionSelectedState.getContext(), selectedRes));
+        // As of Android Support Library 23.3.0, support vector drawables can only be loaded
+        // via app:srcCompat or setImageResource().
+        // sessionSelectedState.setImageDrawable(ContextCompat.getDrawable(sessionSelectedState.getContext(), selectedRes));
+        sessionSelectedState.setImageResource(selectedRes);
 
         sessionCard.setOnClickListener(v -> listener.onSelectedSessionClicked(session));
     }

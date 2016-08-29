@@ -34,8 +34,9 @@ public class HomePresenter extends BaseFragmentPresenter<HomeMvp.View> implement
     private DatabaseReference dbRef;
     private Analytics analytics;
     private DataProvider dataProvider;
-    private ValueEventListener firebaseListener;
-    private Subscription scheduleSubscription;
+    private DatabaseReference newsRef = null;
+    private ValueEventListener firebaseListener = null;
+    private Subscription scheduleSubscription = null;
     private boolean isDisplayed = false;
     private boolean firebaseLoaded = false;
     private boolean sessionsLoaded = false;
@@ -60,7 +61,7 @@ public class HomePresenter extends BaseFragmentPresenter<HomeMvp.View> implement
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 NewsEntry newsEntry = dataSnapshot.getValue(NewsEntry.class);
-                if (newsEntry != null && newsEntry.getTitle() != null) {
+                if (newsEntry != null && newsEntry.getTitle() != null && newsEntry.getText() != null) {
                     view.updateAnnouncement(newsEntry.getTitle(), newsEntry.getText());
                 }
                 else {
@@ -77,13 +78,16 @@ public class HomePresenter extends BaseFragmentPresenter<HomeMvp.View> implement
                 setVisibility();
             }
         };
-        dbRef.child("news").addValueEventListener(firebaseListener);
+        if (newsRef == null) {
+            newsRef = dbRef.child("news");
+        }
+        newsRef.addValueEventListener(firebaseListener);
         // check what session is coming next
         scheduleSubscription = dataProvider.getSchedule()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(scheduleDays -> schedule = scheduleDays,
-                        throwable -> Timber.e(throwable, "Error getting schedule"),
+                        throwable -> {sessionsLoaded = true; setVisibility(); Timber.e(throwable, "Error getting schedule");},
                         () -> {
                             if (schedule == null) {
                                 // view.displayLoadingError();
@@ -99,8 +103,9 @@ public class HomePresenter extends BaseFragmentPresenter<HomeMvp.View> implement
         ZoneId confZone = ZoneId.of("Europe/Vienna");
         LocalDateTime now = LocalDateTime.now(confZone);
         LocalDate today = LocalDate.now(confZone);
+        // TODO: Change back to realtime
         today = LocalDate.of(2016, 9, 16);
-        now = LocalDateTime.of(today, LocalTime.now());
+        now = LocalDateTime.of(today, LocalTime.now(confZone));
         boolean isBefore = false;
         boolean isLastDay = false;
         ScheduleDay todayScheduleDay = null;
@@ -173,12 +178,7 @@ public class HomePresenter extends BaseFragmentPresenter<HomeMvp.View> implement
 
     private void setVisibility() {
         if (!isDisplayed && firebaseLoaded && sessionsLoaded) {
-            // TODO: show cards
             isDisplayed = true;
-        }
-        else {
-            // TODO: show loading...
-            isDisplayed = false;
         }
         view.setIsLoading(!isDisplayed);
     }
@@ -186,7 +186,10 @@ public class HomePresenter extends BaseFragmentPresenter<HomeMvp.View> implement
     public void onStop() {
         super.onStop();
         if (firebaseListener != null) {
-            dbRef.removeEventListener(firebaseListener);
+            if (newsRef == null) {
+                newsRef = dbRef.child("news");
+            }
+            newsRef.removeEventListener(firebaseListener);
             firebaseListener = null;
         }
         if (scheduleSubscription != null) {

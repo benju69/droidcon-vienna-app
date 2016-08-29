@@ -12,7 +12,7 @@
     <string name="drawer_close">Close navigation drawer</string>
     <string name="drawer_header_headline">droidcon Vienna</string>
     <string name="drawer_header_subheadline">16–17 September 2016</string>
-    <string name="drawer_nav_home">At a glance</string>
+    <string name="drawer_nav_home">droidcon Vienna</string>
     <string name="drawer_nav_agenda">Agenda</string>
     <string name="drawer_nav_schedule">My Schedule</string>
     <string name="drawer_nav_speakers">Speakers</string>

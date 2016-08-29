@@ -28,6 +28,7 @@ import at.droidcon.vienna2016.ui.sessions.details.SessionDetailsActivityIntentBu
 import at.droidcon.vienna2016.ui.sessions.list.SessionsListAdapter;
 import at.droidcon.vienna2016.ui.sessions.list.SessionsListMvp;
 import at.droidcon.vienna2016.utils.Analytics;
+import at.droidcon.vienna2016.utils.Intents;
 import butterknife.BindView;
 
 /**
@@ -44,6 +45,10 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeMvp
     @BindView(R.id.home_current_recyclerview) RecyclerView currentRecyclerView;
     @BindView(R.id.home_content) View content;
     @BindView(R.id.home_loading) View loading;
+    @BindView(R.id.home_sponsor_shpock) View spock;
+    @BindView(R.id.home_sponsor_runtastic) View runtastic;
+    @BindView(R.id.home_sponsor_creativeworkline) View creativworkline;
+    @BindView(R.id.home_sponsor_c4c_engineering) View c4c_engineering;
     @Inject Analytics analytics;
     @Inject DatabaseReference dbRef;
     @Inject DataProvider dataProvider;
@@ -78,6 +83,12 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeMvp
         loading.setVisibility(isLoading ? View.VISIBLE : View.GONE);
     }
 
+    private void openLink(String url) {
+        if (url != null) {
+            Intents.startExternalUrl(getActivity(), url);
+        }
+    }
+
     @Override
     protected HomePresenter newPresenter() {
         return new HomePresenter(this, dbRef, analytics, dataProvider);
@@ -92,6 +103,16 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeMvp
     public void onCreate(@Nullable Bundle savedInstanceState) {
         DroidconApp.get(getContext()).component().inject(this);
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        View.OnClickListener clickListener = v -> openLink(v.getTag() != null ? v.getTag().toString() : null) ;
+        spock.setOnClickListener(clickListener);
+        runtastic.setOnClickListener(clickListener);
+        creativworkline.setOnClickListener(clickListener);
+        c4c_engineering.setOnClickListener(clickListener);
     }
 
     @Override

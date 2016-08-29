@@ -134,15 +134,29 @@ public class SessionDetailsActivity extends BaseActivity<SessionDetailsPresenter
         }
 
         if (isSelected) {
-            fab.setImageDrawable(Views.getDrawable(this, R.drawable.session_details_like_selected));
+            // As of Android Support Library 23.3.0, support vector drawables can only be loaded
+            // via app:srcCompat or setImageResource().
+            // fab.setImageDrawable(Views.getDrawable(this, R.drawable.session_details_like_selected));
+            fab.setImageResource(R.drawable.session_details_like_selected);
         } else {
-            fab.setImageDrawable(Views.getDrawable(this, R.drawable.session_details_like_default));
+            // fab.setImageDrawable(Views.getDrawable(this, R.drawable.session_details_like_default));
+            fab.setImageResource(R.drawable.session_details_like_default);
         }
     }
 
     @Override
     public void showSnackbarMessage(@StringRes int resId) {
         Snackbar.make(layout, resId, Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void enableFeedback(boolean show) {
+        if (show) {
+            feedback.setVisibility(View.VISIBLE);
+        }
+        else {
+            feedback.setVisibility(View.GONE);
+        }
     }
 
     private void bindTalkInfo(Session session) {

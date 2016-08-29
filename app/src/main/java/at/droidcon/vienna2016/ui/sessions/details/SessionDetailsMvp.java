@@ -12,6 +12,8 @@ public interface SessionDetailsMvp {
         void updateFabButton(boolean isSelected, boolean animate);
 
         void showSnackbarMessage(@StringRes int resId);
+
+        void enableFeedback(boolean show);
     }
 
     interface Presenter {
