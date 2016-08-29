@@ -6,11 +6,13 @@ import java.util.List;
 
 public interface SessionsListMvp {
 
-    interface View {
+    interface SessionDetailsHandler {
+        void startSessionDetails(Session session);
+    }
+    interface View extends SessionDetailsHandler {
         void initToobar(String title);
 
         void initSessionsList(List<Session> sessions);
 
-        void startSessionDetails(Session session);
     }
 }

@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import at.droidcon.vienna2016.DroidconApp;
 import at.droidcon.vienna2016.R;
+import at.droidcon.vienna2016.ui.home.HomeFragment;
 import at.droidcon.vienna2016.utils.Analytics;
 import at.droidcon.vienna2016.utils.Configuration;
 import at.droidcon.vienna2016.ui.BaseActivityPresenter;
@@ -75,8 +76,7 @@ public class DrawerPresenter extends BaseActivityPresenter<DrawerMvp.View> imple
         if (itemId != selectedItemId) {
             switch (itemId) {
                 case R.id.drawer_nav_home:
-                    // TODO: Create home view
-                    view.showFragment(new SchedulePagerFragmentBuilder(false).build());
+                    view.showFragment(new HomeFragment());
                     toolbarTitle = R.string.drawer_nav_home;
                     analytics.logViewScreen("home");
                     break;

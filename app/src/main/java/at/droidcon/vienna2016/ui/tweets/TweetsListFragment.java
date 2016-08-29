@@ -35,7 +35,7 @@ public class TweetsListFragment extends ListFragment {
         super.onCreate(savedInstanceState);
 
         final SearchTimeline searchTimeline = new SearchTimeline.Builder()
-                .query("#droidconvie")
+                .query("droidconvie")
                 .resultType(SearchTimeline.ResultType.RECENT)
                 .build();
         adapter = new TweetTimelineListAdapter.Builder(getActivity())

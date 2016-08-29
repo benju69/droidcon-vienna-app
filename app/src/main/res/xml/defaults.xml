@@ -2,10 +2,10 @@
 <defaultsMap>
     <entry>
         <key>show_home_screen</key>
-        <value>false</value>
+        <value>true</value>
     </entry>
     <entry>
         <key>show_tweets_screen</key>
-        <value>false</value>
+        <value>true</value>
     </entry>
 </defaultsMap>

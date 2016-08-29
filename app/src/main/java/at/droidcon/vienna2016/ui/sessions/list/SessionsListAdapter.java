@@ -14,13 +14,15 @@ public class SessionsListAdapter extends RecyclerView.Adapter<SessionsListEntry>
     private final List<Session> sessions;
     private final Picasso picasso;
     private final SelectedSessionsMemory selectedSessionsMemory;
-    private final SessionsListMvp.View listener;
+    private final SessionsListMvp.SessionDetailsHandler listener;
+    private final boolean showTime;
 
-    public SessionsListAdapter(List<Session> sessions, Picasso picasso, SelectedSessionsMemory selectedSessionsMemory, SessionsListMvp.View listener) {
+    public SessionsListAdapter(List<Session> sessions, Picasso picasso, SelectedSessionsMemory selectedSessionsMemory, SessionsListMvp.SessionDetailsHandler listener, boolean showTime) {
         this.sessions = sessions;
         this.picasso = picasso;
         this.selectedSessionsMemory = selectedSessionsMemory;
         this.listener = listener;
+        this.showTime = showTime;
     }
 
     @Override
@@ -31,7 +33,7 @@ public class SessionsListAdapter extends RecyclerView.Adapter<SessionsListEntry>
     @Override
     public void onBindViewHolder(SessionsListEntry holder, int position) {
         Session session = sessions.get(position);
-        holder.bindSession(session, selectedSessionsMemory.isSelected(session));
+        holder.bindSession(session, selectedSessionsMemory.isSelected(session), showTime);
         holder.itemView.setOnClickListener(v -> listener.startSessionDetails(session));
     }
 

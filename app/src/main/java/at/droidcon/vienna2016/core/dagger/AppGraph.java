@@ -3,6 +3,7 @@ package at.droidcon.vienna2016.core.dagger;
 import at.droidcon.vienna2016.receiver.BootReceiver;
 import at.droidcon.vienna2016.ui.drawer.DrawerActivity;
 import at.droidcon.vienna2016.ui.drawer.DrawerPresenter;
+import at.droidcon.vienna2016.ui.home.HomeFragment;
 import at.droidcon.vienna2016.ui.schedule.day.ScheduleDayFragment;
 import at.droidcon.vienna2016.ui.schedule.pager.SchedulePagerFragment;
 import at.droidcon.vienna2016.ui.sessions.details.SessionDetailsActivity;
@@ -38,4 +39,6 @@ public interface AppGraph {
     void inject(SettingsFragment fragment);
 
     void inject(BootReceiver receiver);
+
+    void inject(HomeFragment fragment);
 }

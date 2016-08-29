@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+    <ScrollView
+        android:id="@+id/home_content"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!-- announcements -->
+            <android.support.v7.widget.CardView
+                android:id="@+id/home_news_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/background"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/schedule_day_entry_card_padding">
+
+                    <TextView
+                        android:id="@+id/home_news_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/primary_text"
+                        android:textSize="@dimen/schedule_day_entry_card_title"
+                        android:textStyle="italic"
+                        tools:text="Latest Update!" />
+
+                    <TextView
+                        android:id="@+id/home_news_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:paddingBottom="4dp"
+                        android:paddingTop="4dp"
+                        android:textColor="@color/secondary_text"
+                        android:textSize="13sp"
+                        tools:text="All sessions are currently delayed for 10 minutes. The next session will start at 14:15 (&lt;i&gt;Kotlin is great&lt;/i&gt; and Xamarin is super)" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <!-- coming next / currently running -->
+            <android.support.v7.widget.CardView
+                android:id="@+id/home_current_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:cardBackgroundColor="@color/background"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/schedule_day_entry_card_padding">
+
+                    <TextView
+                        android:id="@+id/home_current_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/primary_text"
+                        android:textSize="@dimen/home_section_title"
+                        android:textStyle="italic"
+                        tools:text="Coming Next" />
+                    <TextView
+                    android:id="@+id/home_current_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/primary_text"
+                        android:textSize="@dimen/home_section_text"
+                        tools:text="See you again next year!" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/home_current_recyclerview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clipToPadding="false"
+                        android:padding="@dimen/item_margin"
+                        tools:listitem="@layout/sessions_list_entry"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <!-- Sponsors: gold -->
+            <android.support.v7.widget.CardView
+                android:id="@+id/home_gold_sponsors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/secondary_background"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/schedule_day_entry_card_padding">
+
+                    <TextView
+                        android:id="@+id/home_gold_sponsors_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/primary_text"
+                        android:textSize="@dimen/schedule_day_entry_card_title"
+                        android:textStyle="italic"
+                        android:text="@string/home_text_gold_sponsors" />
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <!-- Sponsors: silver -->
+            <android.support.v7.widget.CardView
+                android:id="@+id/home_silver_sponsors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:cardBackgroundColor="@color/background"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/schedule_day_entry_card_padding">
+
+                    <TextView
+                        android:id="@+id/home_silver_sponsors_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/primary_text"
+                        android:textSize="@dimen/schedule_day_entry_card_title"
+                        android:textStyle="italic"
+                        android:text="@string/home_text_silver_sponsors" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            app:srcCompat="@drawable/sponsor_shpock"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitXY"
+                            android:padding="12dp"
+                            android:adjustViewBounds="true"
+                            android:layout_height="wrap_content" />
+
+                        <ImageView
+                            app:srcCompat="@drawable/sponsor_runtastic"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:padding="12dp"
+                            android:scaleType="fitXY"
+                            android:adjustViewBounds="true"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <!-- Sponsors: bronze -->
+            <android.support.v7.widget.CardView
+                android:id="@+id/home_bronze_sponsors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:cardBackgroundColor="@color/background"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/schedule_day_entry_card_padding">
+
+                    <TextView
+                        android:id="@+id/home_bronze_sponsors_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/primary_text"
+                        android:textSize="@dimen/schedule_day_entry_card_title"
+                        android:textStyle="italic"
+                        android:text="@string/home_text_bronze_sponsors" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            app:srcCompat="@drawable/sponsor_creativeworkline"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitXY"
+                            android:padding="12dp"
+                            android:adjustViewBounds="true"
+                            android:layout_height="wrap_content" />
+
+                        <ImageView
+                            app:srcCompat="@drawable/sponsor_c4c_engineering"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitXY"
+                            android:padding="12dp"
+                            android:adjustViewBounds="true"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+    <ProgressBar
+        android:id="@+id/home_loading"
+        style="@style/Loading"/>
+</FrameLayout>

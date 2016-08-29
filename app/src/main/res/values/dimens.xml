@@ -10,6 +10,10 @@
     <dimen name="schedule_day_entry_card_padding">12dp</dimen>
     <dimen name="schedule_day_entry_card_title">16sp</dimen>
 
+    <!-- Home -->
+    <dimen name="home_section_title">16sp</dimen>
+    <dimen name="home_section_text">12sp</dimen>
+
     <!-- Speakers -->
     <dimen name="speakers_entry_width">180dp</dimen>
     <dimen name="speakers_entry_height">160dp</dimen>

@@ -59,7 +59,7 @@ public class SessionsListActivity extends BaseActivity<SessionsListPresenter> im
 
     @Override
     public void initSessionsList(List<Session> sessions) {
-        SessionsListAdapter adapter = new SessionsListAdapter(sessions, picasso, selectedSessionsMemory, this);
+        SessionsListAdapter adapter = new SessionsListAdapter(sessions, picasso, selectedSessionsMemory, this, false);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);

@@ -2,6 +2,7 @@ package at.droidcon.vienna2016.ui.sessions.list;
 
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,6 +14,9 @@ import at.droidcon.vienna2016.ui.core.recyclerview.BaseViewHolder;
 import at.droidcon.vienna2016.utils.App;
 import com.squareup.picasso.Picasso;
 
+import org.threeten.bp.format.DateTimeFormatter;
+import org.threeten.bp.format.FormatStyle;
+
 import butterknife.BindView;
 
 public class SessionsListEntry extends BaseViewHolder {
@@ -22,6 +26,8 @@ public class SessionsListEntry extends BaseViewHolder {
     @BindView(R.id.sessions_list_entry_selected_state) ImageView selectedState;
     @BindView(R.id.sessions_list_entry_room) TextView room;
     @BindView(R.id.sessions_list_entry_description) TextView description;
+    @BindView(R.id.sessions_list_entry_time_symbol) ImageView timeSymbol;
+    @BindView(R.id.sessions_list_entry_time) TextView time;
 
     private final Picasso picasso;
 
@@ -30,7 +36,7 @@ public class SessionsListEntry extends BaseViewHolder {
         this.picasso = picasso;
     }
 
-    public void bindSession(Session session, boolean isSelected) {
+    public void bindSession(Session session, boolean isSelected, boolean showTime) {
         String photoUrl = App.getPhotoUrl(session);
         if (TextUtils.isEmpty(photoUrl)) {
             photo.setImageDrawable(null);
@@ -44,5 +50,18 @@ public class SessionsListEntry extends BaseViewHolder {
 
         int selectedRes = isSelected ? R.drawable.sessions_list_entry_selected : R.drawable.sessions_list_entry_default;
         selectedState.setImageDrawable(ContextCompat.getDrawable(selectedState.getContext(), selectedRes));
+
+        if (showTime) {
+            DateTimeFormatter timeFormatter = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT);
+            String fromTime = session.getFromTime().format(timeFormatter);
+            String toTime = session.getToTime().format(timeFormatter);
+            time.setText(fromTime + " - " + toTime);
+            timeSymbol.setVisibility(View.VISIBLE);
+            time.setVisibility(View.VISIBLE);
+        }
+        else {
+            timeSymbol.setVisibility(View.GONE);
+            time.setVisibility(View.GONE);
+        }
     }
 }

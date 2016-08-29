@@ -65,6 +65,30 @@
                     android:textColor="?attr/colorPrimaryDark"
                     android:textSize="13sp"
                     tools:text="Room #1"/>
+
+                <ImageView
+                    android:id="@+id/sessions_list_entry_time_symbol"
+                    android:layout_marginStart="@dimen/activity_margin"
+                    android:layout_marginLeft="@dimen/activity_margin"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginRight="2dp"
+                    android:contentDescription="@null"
+                    android:visibility="gone"
+                    tools:src="@drawable/schedule_day_entry_time"/>
+
+                <TextView
+                    android:id="@+id/sessions_list_entry_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:paddingBottom="2dp"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="13sp"
+                    android:visibility="gone"
+                    tools:text="09:45"/>
             </LinearLayout>
 
             <TextView
