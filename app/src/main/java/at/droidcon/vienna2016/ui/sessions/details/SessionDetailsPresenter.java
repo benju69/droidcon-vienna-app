@@ -50,8 +50,6 @@ public class SessionDetailsPresenter extends BaseActivityPresenter<SessionDetail
         // check if session has started already
         ZoneId confZone = ZoneId.of("Europe/Vienna");
         LocalDateTime now = LocalDateTime.now(confZone);
-        // TODO: Change back to realtime
-        now = LocalDateTime.of(LocalDate.of(2016, 9, 16), LocalTime.now(confZone));
         view.enableFeedback(now.compareTo(session.getFromTime()) > 0);
     }
 

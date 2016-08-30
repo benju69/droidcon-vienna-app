@@ -103,9 +103,6 @@ public class HomePresenter extends BaseFragmentPresenter<HomeMvp.View> implement
         ZoneId confZone = ZoneId.of("Europe/Vienna");
         LocalDateTime now = LocalDateTime.now(confZone);
         LocalDate today = LocalDate.now(confZone);
-        // TODO: Change back to realtime
-        today = LocalDate.of(2016, 9, 16);
-        now = LocalDateTime.of(today, LocalTime.now(confZone));
         boolean isBefore = false;
         boolean isLastDay = false;
         ScheduleDay todayScheduleDay = null;
