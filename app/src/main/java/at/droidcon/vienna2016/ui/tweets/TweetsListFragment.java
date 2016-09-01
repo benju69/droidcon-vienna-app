@@ -26,7 +26,6 @@ import butterknife.Unbinder;
 
 public class TweetsListFragment extends ListFragment {
 
-    @BindView(R.id.tweets_list) SwipeRefreshLayout swipeLayout;
     private TweetTimelineListAdapter adapter = null;
     private Unbinder unbinder;
 
@@ -49,20 +48,6 @@ public class TweetsListFragment extends ListFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tweets_list, container, false);
         unbinder = ButterKnife.bind(this, view);
-        swipeLayout.setOnRefreshListener(() -> {
-            swipeLayout.setRefreshing(true);
-            adapter.refresh(new Callback<TimelineResult<Tweet>>() {
-                @Override
-                public void success(Result<TimelineResult<Tweet>> result) {
-                    swipeLayout.setRefreshing(false);
-                }
-
-                @Override
-                public void failure(TwitterException exception) {
-                    // Toast or some other action
-                }
-            });
-        });
         return view;
     }
 
