@@ -9,6 +9,7 @@ import android.support.annotation.StringRes;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -130,6 +131,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeMvp
         if (parent instanceof DrawerActivity) {
             DrawerActivity drawer = (DrawerActivity)parent;
             drawer.getPresenter().onNavigationItemSelected(itemId);
+            drawer.selectDrawerMenuItem(itemId);
         }
     }
 
@@ -154,6 +156,8 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeMvp
 
     @Override
     public void startSessionDetails(Session session) {
-        startActivity(new SessionDetailsActivityIntentBuilder(session).build(getContext()));
+        if (!TextUtils.isEmpty(session.getRoom())) {
+            startActivity(new SessionDetailsActivityIntentBuilder(session).build(getContext()));
+        }
     }
 }

@@ -48,7 +48,8 @@ public class ScheduleDayFragmentAdapterMySessions extends RecyclerView.Adapter<S
                 if (session.getRoom().equals(Room.NONE.label)) {
                     holder.bindBreakSlot(slot, session, true);
                 } else {
-                    holder.bindSelectedSession(slot, session, true, selectedSessionsMemory.isSelected(session));
+                    // holder.bindSelectedSession(slot, session, true, selectedSessionsMemory.isSelected(session));
+                    holder.bindFreeSlot(slot);
                 }
             }
         } else {

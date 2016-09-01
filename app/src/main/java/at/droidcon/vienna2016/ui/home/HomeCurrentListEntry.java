@@ -64,17 +64,25 @@ public class HomeCurrentListEntry extends BaseViewHolder {
         }
 
         title.setText(session.getTitle());
-        room.setText(session.getRoom());
         description.setText(session.getDescription());
 
-        int selectedRes = isSelected ? R.drawable.sessions_list_entry_selected : R.drawable.sessions_list_entry_default;
-        selectedState.setImageResource(selectedRes);
+        String roomText = session.getRoom();
+        if (TextUtils.isEmpty(roomText)) {
+            selectedState.setVisibility(View.GONE);
+            isSelected = false;
+        }
+        else {
+            room.setText(roomText);
+            int selectedRes = isSelected ? R.drawable.sessions_list_entry_selected : R.drawable.sessions_list_entry_default;
+            // As of Android Support Library 23.3.0, support vector drawables can only be loaded
+            // via app:srcCompat or setImageResource().
+            // selectedState.setImageDrawable(ContextCompat.getDrawable(selectedState.getContext(), selectedRes));
+            selectedState.setImageResource(selectedRes);
+            selectedState.setVisibility(View.VISIBLE);
+        }
         int selectedColor = isSelected ? R.color.secondary_background : R.color.background;
         layout.setBackgroundResource(selectedColor);
 
-        // As of Android Support Library 23.3.0, support vector drawables can only be loaded
-        // via app:srcCompat or setImageResource().
-        // selectedState.setImageDrawable(ContextCompat.getDrawable(selectedState.getContext(), selectedRes));
 
         if (showTime) {
             DateTimeFormatter timeFormatter = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT);

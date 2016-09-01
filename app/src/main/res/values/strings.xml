@@ -13,7 +13,7 @@
     <string name="drawer_header_headline">droidcon Vienna</string>
     <string name="drawer_header_subheadline">16–17 September 2016</string>
     <string name="drawer_nav_home">droidcon Vienna</string>
-    <string name="drawer_nav_agenda">Agenda</string>
+    <string name="drawer_nav_agenda">All Sessions</string>
     <string name="drawer_nav_schedule">My Schedule</string>
     <string name="drawer_nav_speakers">Speakers</string>
     <string name="drawer_nav_tweets">Tweets</string>
