@@ -1,6 +1,9 @@
 package at.droidcon.vienna2016.ui.home;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
+import android.support.annotation.IntegerRes;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v7.widget.CardView;
@@ -24,6 +27,7 @@ import at.droidcon.vienna2016.data.app.DataProvider;
 import at.droidcon.vienna2016.data.app.SelectedSessionsMemory;
 import at.droidcon.vienna2016.data.app.model.Session;
 import at.droidcon.vienna2016.ui.BaseFragment;
+import at.droidcon.vienna2016.ui.drawer.DrawerActivity;
 import at.droidcon.vienna2016.ui.sessions.details.SessionDetailsActivityIntentBuilder;
 import at.droidcon.vienna2016.ui.sessions.list.SessionsListAdapter;
 import at.droidcon.vienna2016.ui.sessions.list.SessionsListMvp;
@@ -49,6 +53,9 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeMvp
     @BindView(R.id.home_sponsor_runtastic) View runtastic;
     @BindView(R.id.home_sponsor_creativeworkline) View creativworkline;
     @BindView(R.id.home_sponsor_c4c_engineering) View c4c_engineering;
+    @BindView(R.id.home_buttons) View agenda_buttons;
+    @BindView(R.id.home_button_agenda_mine) View agenda_mine;
+    @BindView(R.id.home_button_agenda_full) View agenda_full;
     @Inject Analytics analytics;
     @Inject DatabaseReference dbRef;
     @Inject DataProvider dataProvider;
@@ -61,19 +68,32 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeMvp
     }
 
     @Override
+    public void setComingNext(@StringRes int title, @StringRes int text) {
+        setComingNext(title, text, null);
+    }
+
+    @Override
+    public void setComingNext(@StringRes int title, List<Session> sessions) {
+        setComingNext(title, 0, sessions);
+    }
+
     public void setComingNext(@StringRes int title, @StringRes int text, @Nullable List<Session> sessions) {
         //
         currentTitle.setText(title);
-        currentText.setText(text);
         if (sessions != null) {
-            SessionsListAdapter adapter = new SessionsListAdapter(sessions, picasso, selectedSessionsMemory, this, true);
+            HomeCurrentSessions adapter = new HomeCurrentSessions(sessions, picasso, selectedSessionsMemory, this, true);
             currentRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
             currentRecyclerView.setHasFixedSize(true);
             currentRecyclerView.setAdapter(adapter);
             currentRecyclerView.setVisibility(View.VISIBLE);
+            currentText.setVisibility(View.GONE);
+            agenda_buttons.setVisibility(View.GONE);
         }
         else {
             currentRecyclerView.setVisibility(View.GONE);
+            currentText.setText(text);
+            currentText.setVisibility(View.VISIBLE);
+            agenda_buttons.setVisibility(View.VISIBLE);
         }
     }
 
@@ -105,14 +125,24 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeMvp
         super.onCreate(savedInstanceState);
     }
 
+    private void openDrawerItem(@IdRes int itemId) {
+        Activity parent = getActivity();
+        if (parent instanceof DrawerActivity) {
+            DrawerActivity drawer = (DrawerActivity)parent;
+            drawer.getPresenter().onNavigationItemSelected(itemId);
+        }
+    }
+
     @Override
     public void onStart() {
         super.onStart();
-        View.OnClickListener clickListener = v -> openLink(v.getTag() != null ? v.getTag().toString() : null) ;
-        spock.setOnClickListener(clickListener);
-        runtastic.setOnClickListener(clickListener);
-        creativworkline.setOnClickListener(clickListener);
-        c4c_engineering.setOnClickListener(clickListener);
+        View.OnClickListener linkOpener = v -> openLink(v.getTag() != null ? v.getTag().toString() : null) ;
+        spock.setOnClickListener(linkOpener);
+        runtastic.setOnClickListener(linkOpener);
+        creativworkline.setOnClickListener(linkOpener);
+        c4c_engineering.setOnClickListener(linkOpener);
+        agenda_full.setOnClickListener(v -> openDrawerItem(R.id.drawer_nav_agenda));
+        agenda_mine.setOnClickListener(v -> openDrawerItem(R.id.drawer_nav_schedule));
     }
 
     @Override

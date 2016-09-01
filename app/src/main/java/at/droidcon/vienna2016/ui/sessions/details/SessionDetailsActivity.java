@@ -151,12 +151,7 @@ public class SessionDetailsActivity extends BaseActivity<SessionDetailsPresenter
 
     @Override
     public void enableFeedback(boolean show) {
-        if (show) {
-            feedback.setVisibility(View.VISIBLE);
-        }
-        else {
-            feedback.setVisibility(View.GONE);
-        }
+        feedback.setEnabled(show);
     }
 
     private void bindTalkInfo(Session session) {

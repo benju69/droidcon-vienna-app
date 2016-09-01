@@ -68,18 +68,16 @@
     <string name="no_tweets_available">No Tweets</string>
 
     <!-- Home Screen -->
-    <string name="home_conference_before_title">droidcon Vienna 2016 starts soon</string>
+    <string name="home_conference_before_title">droidcon Vienna 2016</string>
     <string name="home_conference_before">droidcon Vienna starts on 16 September at Technikum Wien.</string>
-    <string name="home_conference_after_title">droidcon Vienna 2016 has ended</string>
+    <string name="home_conference_after_title">droidcon Vienna 2016</string>
     <string name="home_conference_after">droidcon Vienna 2016 was from 16 to 17 September at Technikum Wien.</string>
     <string name="home_conference_last_day_title">droidcon Vienna is over</string>
     <string name="home_conference_last_day">Thanks for coming, see you again next year!</string>
     <string name="home_conference_next_day_title">See you tomorrow</string>
     <string name="home_conference_next_day">This was the program for today. We will continue with great content tomorrow morning!</string>
     <string name="home_session_current_title">Running now</string>
-    <string name="home_session_current"></string>
     <string name="home_session_next_title">Coming next</string>
-    <string name="home_session_next"></string>
     <string name="home_text_gold_sponsors">Gold Sponsors</string>
     <string name="home_text_silver_sponsors">Silver Sponsors</string>
     <string name="home_text_bronze_sponsors">Bronze Sponsors</string>

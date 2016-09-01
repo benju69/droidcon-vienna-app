@@ -5,6 +5,8 @@ import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 
+import at.droidcon.vienna2016.ui.home.HomeMvp;
+
 public interface DrawerMvp {
 
     interface View {
@@ -23,6 +25,8 @@ public interface DrawerMvp {
         void showDrawerMenuItem(@IdRes int id, boolean show);
 
         Context getContext();
+
+        DrawerMvp.Presenter getPresenter();
     }
 
     interface Presenter {

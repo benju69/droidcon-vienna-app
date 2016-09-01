@@ -1,6 +1,5 @@
 package at.droidcon.vienna2016.ui.home;
 
-import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 
 import java.util.List;
@@ -17,7 +16,9 @@ public interface HomeMvp {
 
         void hideAnnouncement();
 
-        void setComingNext(@StringRes int title, @StringRes int text, @Nullable List<Session> sessions);
+        void setComingNext(@StringRes int title, @StringRes int text);
+
+        void setComingNext(@StringRes int title, List<Session> sessions);
 
         void setIsLoading(boolean isLoading);
     }

@@ -59,6 +59,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:layout_margin">@dimen/activity_margin</item>
+        <item name="android:tint">@color/secondary_background</item>
     </style>
     <style name="Session.Feedback" />
 

@@ -126,11 +126,11 @@ public class HomePresenter extends BaseFragmentPresenter<HomeMvp.View> implement
         if (todayScheduleDay == null) {
             if (isBefore) {
                 // days before the conference
-                view.setComingNext(R.string.home_conference_before_title, R.string.home_conference_before, null);
+                view.setComingNext(R.string.home_conference_before_title, R.string.home_conference_before);
             }
             else {
                 // days after the conference
-                view.setComingNext(R.string.home_conference_after_title, R.string.home_conference_after, null);
+                view.setComingNext(R.string.home_conference_after_title, R.string.home_conference_after);
             }
         }
         else {
@@ -148,26 +148,26 @@ public class HomePresenter extends BaseFragmentPresenter<HomeMvp.View> implement
                 // at or after the last slot
                 if (isLastDay) {
                     // last day, nothing coming
-                    view.setComingNext(R.string.home_conference_last_day_title, R.string.home_conference_last_day, null);
+                    view.setComingNext(R.string.home_conference_last_day_title, R.string.home_conference_last_day);
                 }
                 else {
                     // tomorrow is another session
-                    view.setComingNext(R.string.home_conference_next_day_title, R.string.home_conference_next_day, null);
+                    view.setComingNext(R.string.home_conference_next_day_title, R.string.home_conference_next_day);
                 }
             }
             else if (currentSlot == null) {
                 // no currentSlot: conf day did not start yet
-                view.setComingNext(R.string.home_session_next_title, R.string.home_session_next, nextSlot.getSessions());
+                view.setComingNext(R.string.home_session_next_title, nextSlot.getSessions());
             }
             else {
                 LocalDateTime nextStart = nextSlot.getTime();
                 if (now.plusMinutes(10).compareTo(nextStart) > 0) {
                     // starting soon
-                    view.setComingNext(R.string.home_session_next_title, R.string.home_session_next, nextSlot.getSessions());
+                    view.setComingNext(R.string.home_session_next_title, nextSlot.getSessions());
                 }
                 else {
                     // starting in more than 15 minutes
-                    view.setComingNext(R.string.home_session_current_title, R.string.home_session_current, currentSlot.getSessions());
+                    view.setComingNext(R.string.home_session_current_title, currentSlot.getSessions());
                 }
             }
         }

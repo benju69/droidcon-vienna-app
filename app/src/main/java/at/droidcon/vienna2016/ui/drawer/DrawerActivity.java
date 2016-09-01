@@ -17,6 +17,7 @@ import android.view.View;
 import at.droidcon.vienna2016.R;
 import at.droidcon.vienna2016.ui.BaseActivity;
 
+import at.droidcon.vienna2016.ui.home.HomeMvp;
 import butterknife.BindView;
 
 public class DrawerActivity extends BaseActivity<DrawerPresenter> implements DrawerMvp.View {
@@ -89,6 +90,11 @@ public class DrawerActivity extends BaseActivity<DrawerPresenter> implements Dra
 
     @Override
     public Context getContext() { return this; }
+
+    @Override
+    public DrawerMvp.Presenter getPresenter() {
+        return presenter;
+    }
 
     @Override
     public void showFragment(Fragment fragment) {
