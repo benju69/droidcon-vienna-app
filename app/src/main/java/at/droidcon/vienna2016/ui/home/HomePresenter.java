@@ -1,5 +1,9 @@
 package at.droidcon.vienna2016.ui.home;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.View;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,6 +46,7 @@ public class HomePresenter extends BaseFragmentPresenter<HomeMvp.View> implement
     private boolean sessionsLoaded = false;
 
     @State Schedule schedule;
+    @State NewsEntry newsEntry;
 
     public HomePresenter(HomeMvp.View view, DatabaseReference dbRef, Analytics analytics, DataProvider dataProvider) {
         super(view);
@@ -51,23 +56,31 @@ public class HomePresenter extends BaseFragmentPresenter<HomeMvp.View> implement
     }
 
     @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        sessionsLoaded = (schedule != null);
+        firebaseLoaded = (newsEntry != null || schedule != null);
+        setVisibility();
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
-        sessionsLoaded = false;
-        firebaseLoaded = false;
-        isDisplayed = false;
+        if (schedule != null) {
+            // load currently running sessions
+            loadUpcoming();
+        }
+        if (newsEntry != null) {
+            // display current Firebase newsEntry
+            loadNewsEntry();
+        }
+        setVisibility();
         // watch for Firebase data
         firebaseListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                NewsEntry newsEntry = dataSnapshot.getValue(NewsEntry.class);
-                if (newsEntry != null && newsEntry.getTitle() != null && newsEntry.getText() != null) {
-                    view.updateAnnouncement(newsEntry.getTitle(), newsEntry.getText());
-                }
-                else {
-                    view.hideAnnouncement();
-                }
-                firebaseLoaded = true;
+                newsEntry = dataSnapshot.getValue(NewsEntry.class);
+                loadNewsEntry();
                 setVisibility();
             }
 
@@ -97,6 +110,16 @@ public class HomePresenter extends BaseFragmentPresenter<HomeMvp.View> implement
                             sessionsLoaded = true;
                             setVisibility();
                         });
+    }
+
+    private void loadNewsEntry() {
+        if (newsEntry != null && newsEntry.getTitle() != null && newsEntry.getText() != null) {
+            view.updateAnnouncement(newsEntry.getTitle(), newsEntry.getText());
+        }
+        else {
+            view.hideAnnouncement();
+        }
+        firebaseLoaded = true;
     }
 
     private void loadUpcoming() {
@@ -193,9 +216,6 @@ public class HomePresenter extends BaseFragmentPresenter<HomeMvp.View> implement
             scheduleSubscription.unsubscribe();
             scheduleSubscription = null;
         }
-        sessionsLoaded = false;
-        firebaseLoaded = false;
-        isDisplayed = false;
     }
 
 }
