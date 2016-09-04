@@ -18,4 +18,7 @@
     <dimen name="speakers_entry_width">180dp</dimen>
     <dimen name="speakers_entry_height">160dp</dimen>
     <dimen name="speaker_details_image">120dp</dimen>
+
+    <!-- Tweets -->
+    <dimen name="tweets_margin_side">10dp</dimen>
 </resources>

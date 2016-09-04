@@ -141,4 +141,8 @@
         <item name="android:layout_marginRight">@dimen/activity_margin</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
+
+    <!-- Tweets -->
+    <style name="Tweets" parent="tw__TweetLightStyle">
+    </style>
 </resources>
