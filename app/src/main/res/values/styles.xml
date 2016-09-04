@@ -8,6 +8,12 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowBackground">@color/background</item>
+        <item name="colorButtonNormal">@color/secondary_background</item>
+    </style>
+
+    <style name="AppTheme.AccentButton">
+        <item name="colorButtonNormal">@color/accent</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -55,11 +61,12 @@
     </style>
 
     <style name="Session.Details.Button">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:layout_margin">@dimen/activity_margin</item>
         <item name="android:tint">@color/secondary_background</item>
+        <item name="colorButtonNormal">@color/accent</item>
     </style>
     <style name="Session.Feedback" />
 
@@ -91,7 +98,7 @@
     </style>
 
     <style name="Session.Feedback.Button">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:layout_margin">@dimen/activity_margin</item>
@@ -111,7 +118,7 @@
     </style>
 
     <!-- Venue -->
-    <style name="Venue"/>
+    <style name="Venue" parent="Theme.AppCompat.Light.DarkActionBar"/>
 
     <style name="Venue.Title">
         <item name="android:fontFamily">sans-serif-condensed</item>
@@ -125,5 +132,13 @@
     <style name="Venue.Content">
         <item name="android:textColor">@color/primary_text</item>
         <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Venue.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/activity_margin</item>
+        <item name="android:layout_marginRight">@dimen/activity_margin</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 </resources>

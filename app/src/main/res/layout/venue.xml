@@ -50,25 +50,17 @@
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/venue_rooms"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_margin"
-            android:layout_marginRight="@dimen/activity_margin"
             android:layout_marginTop="@dimen/activity_margin"
             android:text="@string/venue_see_rooms"
-            android:textColor="@android:color/white"
             android:visibility="gone"
-            app:backgroundTint="?attr/colorAccent"/>
+            android:theme="@style/AppTheme.AccentButton"
+            style="@style/Venue.Button"/>
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/venue_locate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_margin"
-            android:layout_marginLeft="@dimen/activity_margin"
-            android:layout_marginRight="@dimen/activity_margin"
             android:text="@string/venue_see_location"
-            android:textColor="@android:color/white"
-            app:backgroundTint="?attr/colorAccent"/>
+            android:theme="@style/AppTheme.AccentButton"
+            style="@style/Venue.Button"/>
     </LinearLayout>
 </ScrollView>
