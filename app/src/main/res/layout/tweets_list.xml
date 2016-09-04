@@ -5,19 +5,17 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ProgressBar
-        android:id="@id/android:empty"
-        style="@style/Loading"
-        tools:visibility="gone"/>
 
     <ListView android:id="@id/android:list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="1dp"
-        android:paddingRight="1dp"
         android:divider="#e1e8ed"
         android:dividerHeight="1dp"
         android:drawSelectorOnTop="false"
         tools:listitem="@layout/tw__tweet_compact"
         />
+    <ProgressBar
+        android:id="@id/android:empty"
+        style="@style/Loading"
+        tools:visibility="gone"/>
 </FrameLayout>

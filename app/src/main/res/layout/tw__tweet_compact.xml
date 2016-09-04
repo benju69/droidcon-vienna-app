@@ -33,7 +33,7 @@
         android:id="@+id/tw__tweet_author_avatar"
         android:layout_below="@id/tw__tweet_retweeted_by"
         android:layout_marginLeft="@dimen/activity_margin"
-        android:layout_marginRight="@dimen/activity_margin"
+        android:layout_marginRight="@dimen/tweets_margin_right"
         style="@style/tw__TweetAvatar.Compact"/>
 
     <!--Name and timestamp don't ellipsize, but @username in the middle does ellipsize-->

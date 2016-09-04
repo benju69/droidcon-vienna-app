@@ -1,6 +1,6 @@
-# Droidcon Austria 2016 Conference App
+# droidcon Vienna 2016 Conference App
 
-Sample app for the "2016 Android Developer Toolbox" talk at droidconAT
+Official app for droidcon Vienna 2016
 
 ## Features
 
