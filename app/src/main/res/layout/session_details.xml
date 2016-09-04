@@ -61,7 +61,8 @@
                     android:textColor="@android:color/white"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    tools:text="The 2016 Android Developer Toolbox"/>
+                    tools:text="The 2016 Android Developer Toolbox"
+                    tools:targetApi="jelly_bean" />
 
                 <TextView
                     android:id="@+id/session_details_info"
@@ -111,7 +112,7 @@
                 android:id="@+id/session_details_feedback"
                 style="@style/Session.Details.Button"
                 android:theme="@style/AppTheme.AccentButton"
-                android:text="Feedback"
+                android:text="@string/session_details_feedback"
                 />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

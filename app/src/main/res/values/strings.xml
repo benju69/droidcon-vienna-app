@@ -36,6 +36,7 @@
         <item quantity="one">Speaker</item>
         <item quantity="other">Speakers</item>
     </plurals>
+    <string name="session_details_feedback">Session Feedback</string>
 
     <!-- Speaker details -->
     <string name="speaker_details_hide">Hide</string>
@@ -43,6 +44,13 @@
     <!-- Session feedback -->
     <string name="session_feedback_cancel">Cancel</string>
     <string name="session_feedback_submit">Submit</string>
+    <string name="session_feedback_complexity">Based on the description and my expectations, it was:</string>
+    <string name="session_feedback_session_rating">Session Rating</string>
+    <string name="session_feedback_speaker_quality">Speaker Quality</string>
+    <string name="session_feedback_awesome">awesome</string>
+    <string name="session_feedback_mediocre">mediocre</string>
+    <string name="session_feedback_too_advanced">too advanced</string>
+    <string name="session_feedback_too_basic">too basic</string>
 
     <!-- Venue -->
     <string name="venue_see_location">Locate on map</string>
@@ -81,4 +89,8 @@
     <string name="home_text_gold_sponsors">Gold Sponsors</string>
     <string name="home_text_silver_sponsors">Silver Sponsors</string>
     <string name="home_text_bronze_sponsors">Bronze Sponsors</string>
+    <string name="home_sponsor_c4c_engineering">c4c engineering</string>
+    <string name="home_sponsor_creative_workline">creative workline</string>
+    <string name="home_sponsor_runtastic">runtastic</string>
+    <string name="home_sponsor_shpock">shpock</string>
 </resources>

@@ -41,7 +41,8 @@
                 android:fontFamily="sans-serif-light"
                 android:textColor="@color/primary_text"
                 android:textSize="14sp"
-                tools:text="Software Craftsman"/>
+                tools:text="Software Craftsman"
+                tools:ignore="UnusedAttribute" />
         </LinearLayout>
     </LinearLayout>
 </merge>

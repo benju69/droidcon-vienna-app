@@ -64,7 +64,8 @@
                     android:paddingBottom="2dp"
                     android:textColor="?attr/colorPrimaryDark"
                     android:textSize="13sp"
-                    tools:text="Room #1"/>
+                    tools:text="Room #1"
+                    tools:ignore="UnusedAttribute" />
 
                 <ImageView
                     android:id="@+id/sessions_list_entry_time_symbol"
@@ -88,7 +89,8 @@
                     android:textColor="@color/secondary_text"
                     android:textSize="13sp"
                     android:visibility="gone"
-                    tools:text="09:45"/>
+                    tools:text="09:45"
+                    tools:ignore="UnusedAttribute" />
             </LinearLayout>
 
             <TextView

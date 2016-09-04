@@ -37,7 +37,8 @@
                 android:paddingBottom="6dp"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
-                tools:text="Gautier Nilhcem"/>
+                tools:text="Gautier Nilhcem"
+                tools:ignore="UnusedAttribute" />
 
             <TextView
                 android:id="@+id/speaker_details_title"
