@@ -77,7 +77,7 @@
 
     <!-- Home Screen -->
     <string name="home_conference_before_title">droidcon Vienna 2016</string>
-    <string name="home_conference_before">droidcon Vienna starts on 16 September at Technikum Wien.</string>
+    <string name="home_conference_before">droidcon Vienna starts on 16 September at the University of Applied Sciences (Fachhochschule) Technikum Wien.</string>
     <string name="home_conference_after_title">droidcon Vienna 2016</string>
     <string name="home_conference_after">droidcon Vienna 2016 was from 16 to 17 September at Technikum Wien.</string>
     <string name="home_conference_last_day_title">droidcon Vienna is over</string>

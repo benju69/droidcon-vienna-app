@@ -42,7 +42,7 @@ import butterknife.BindView;
 
 public class HomeFragment extends BaseFragment<HomePresenter> implements HomeMvp.View, SessionsListMvp.SessionDetailsHandler {
 
-    @BindView(R.id.home_news_card) CardView newsCard;
+    @BindView(R.id.home_news_card) View newsCard;
     @BindView(R.id.home_news_title) TextView newsTitle;
     @BindView(R.id.home_news_text) TextView newsText;
     @BindView(R.id.home_current_title) TextView currentTitle;
