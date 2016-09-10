@@ -20,9 +20,9 @@ import at.droidcon.vienna2016.utils.Views;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class VenueFragment extends BaseFragment {
+public class VenueConferenceFragment extends BaseFragment {
 
-    @BindView(R.id.venue_image) ImageView photo;
+    @BindView(R.id.venue_conference_image) ImageView photo;
 
     private static final float PHOTO_RATIO = 0.406f;
     private static final String COORDINATES_URI = "geo:48.2392867,16.3751354?q=" + Uri.encode("Technikum Wien | University of Applied Sciences");
@@ -34,7 +34,7 @@ public class VenueFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.venue, container, false);
+        return inflater.inflate(R.layout.venue_conference, container, false);
     }
 
     @Override
@@ -43,12 +43,12 @@ public class VenueFragment extends BaseFragment {
         initPhotoSize();
     }
 
-    @OnClick(R.id.venue_rooms)
+    @OnClick(R.id.venue_conference_rooms)
     void openRoomsPlan() {
         startActivity(new Intent(getContext(), ZoomableImageActivity.class));
     }
 
-    @OnClick(R.id.venue_locate)
+    @OnClick(R.id.venue_conference_locate)
     void openMapsLocation() {
         if (!Intents.startUri(getContext(), COORDINATES_URI)) {
             View view = getView();

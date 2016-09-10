@@ -55,10 +55,15 @@
     <!-- Venue -->
     <string name="venue_see_location">Locate on map</string>
     <string name="venue_see_location_error">Error opening map.\nDo you have Google Maps installed?</string>
-    <string name="venue_title">Technikum Wien\nUniversity of Applied Sciences</string>
-    <string name="venue_address">Höchstädtplatz 6, 1200 Vienna</string>
-    <string name="venue_info">\nUniversity of Applied Sciences Technikum Wien (German: Fachhochschule Technikum Wien) was founded in 1994 and became Vienna\'s first university of applied sciences in 2000.\nIt is the largest technical university of applied sciences in Austria and offers thirteen bachelor\'s degree and seventeen master\'s degree programs.\n\n- Three large session rooms\n- Audi max for keynote\n- Located next to U6 and S-Bahn\n</string>
+    <string name="venue_conference_title">Technikum Wien\nUniversity of Applied Sciences</string>
+    <string name="venue_conference_address">Höchstädtplatz 5, 1200 Vienna</string>
+    <string name="venue_conference_info">\nUniversity of Applied Sciences Technikum Wien (German: Fachhochschule Technikum Wien) was founded in 1994 and became Vienna\'s first university of applied sciences in 2000.\nIt is the largest technical university of applied sciences in Austria and offers thirteen bachelor\'s degree and seventeen master\'s degree programs.</string>
+    <string name="venue_afterparty_title">Café Alias\nMillennium City</string>
+    <string name="venue_afterparty_address">Handelskai 94–96, 1200 Vienna</string>
+    <string name="venue_afterparty_info">\nLocated at the first floor of Millennium City, the Café Alias will offer you free beer &amp; wine and will be the place of relaxing and networking after a compressed day of conference.\nIt is located in walking distance from the conference venue.\nDo not forget to bring your badge for enjoying the free beverages!</string>
     <string name="venue_see_rooms">Rooms Plans</string>
+    <string name="venue_conference_tab">Conference</string>
+    <string name="venue_afterparty_tab">Afterparty</string>
 
     <!-- Settings -->
     <string name="settings_notifications">Notifications</string>

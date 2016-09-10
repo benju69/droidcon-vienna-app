@@ -9,13 +9,14 @@ import javax.inject.Inject;
 import at.droidcon.vienna2016.DroidconApp;
 import at.droidcon.vienna2016.R;
 import at.droidcon.vienna2016.ui.home.HomeFragment;
+import at.droidcon.vienna2016.ui.venue.VenueConferenceFragment;
+import at.droidcon.vienna2016.ui.venue.VenuePagerFragment;
 import at.droidcon.vienna2016.utils.Analytics;
 import at.droidcon.vienna2016.utils.Configuration;
 import at.droidcon.vienna2016.ui.BaseActivityPresenter;
 import at.droidcon.vienna2016.ui.schedule.pager.SchedulePagerFragmentBuilder;
 import at.droidcon.vienna2016.ui.settings.SettingsFragment;
 import at.droidcon.vienna2016.ui.speakers.list.SpeakersListFragment;
-import at.droidcon.vienna2016.ui.venue.VenueFragment;
 import at.droidcon.vienna2016.ui.tweets.TweetsListFragment;
 
 import icepick.State;
@@ -101,7 +102,7 @@ public class DrawerPresenter extends BaseActivityPresenter<DrawerMvp.View> imple
                     toolbarTitle = R.string.drawer_nav_tweets;
                     break;
                 case R.id.drawer_nav_venue:
-                    view.showFragment(new VenueFragment());
+                    view.showFragment(new VenuePagerFragment());
                     analytics.logViewScreen("venue");
                     toolbarTitle = R.string.drawer_nav_venue;
                     break;
