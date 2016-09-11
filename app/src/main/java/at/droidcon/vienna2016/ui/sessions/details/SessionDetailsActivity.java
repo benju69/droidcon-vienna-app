@@ -152,6 +152,7 @@ public class SessionDetailsActivity extends BaseActivity<SessionDetailsPresenter
     @Override
     public void enableFeedback(boolean show) {
         feedback.setEnabled(show);
+        feedback.setAlpha(show ? 1.f : .5f);
     }
 
     private void bindTalkInfo(Session session) {
