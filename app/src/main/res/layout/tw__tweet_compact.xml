@@ -33,7 +33,11 @@
         android:id="@+id/tw__tweet_author_avatar"
         android:layout_below="@id/tw__tweet_retweeted_by"
         android:layout_marginLeft="@dimen/activity_margin"
+        android:layout_marginStart="@dimen/activity_margin"
         android:layout_marginRight="@dimen/tweets_margin_right"
+        android:layout_marginEnd="@dimen/tweets_margin_right"
+        android:layout_width="@dimen/tweets_image_size"
+        android:layout_height="@dimen/tweets_image_size"
         style="@style/tw__TweetAvatar.Compact"/>
 
     <!--Name and timestamp don't ellipsize, but @username in the middle does ellipsize-->
@@ -74,6 +78,8 @@
     <FrameLayout
         android:id="@+id/tw__tweet_media_container"
         style="@style/tw__TweetMediaContainer.Compact"
+        android:layout_marginEnd="@dimen/tweets_media_margin"
+        android:layout_marginRight="@dimen/tweets_media_margin"
         android:layout_below="@id/tw__author_attribution"
         android:layout_toEndOf="@id/tw__tweet_author_avatar"
         android:layout_toRightOf="@id/tw__tweet_author_avatar">

@@ -40,8 +40,8 @@ android {
 
     defaultConfig {
         applicationId 'at.droidcon.vienna2016'
-        versionCode 12
-        versionName '1.0.8'
+        versionCode 13
+        versionName '1.0.9'
 
         minSdkVersion 15
         targetSdkVersion 24
