@@ -11,9 +11,6 @@ import at.droidcon.vienna2016.receiver.reminder.SessionsReminder;
 
 import javax.inject.Inject;
 
-import hugo.weaving.DebugLog;
-
-@DebugLog
 public class BootReceiver extends BroadcastReceiver {
 
     @Inject SessionsReminder sessionsReminder;
