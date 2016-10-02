@@ -165,7 +165,6 @@ dependencies {
     testCompile 'org.mockito:mockito-core:1.9.5'
     testCompile 'org.robolectric:robolectric:3.1.2'
     provided 'org.projectlombok:lombok:1.16.10'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
 }
 
 // print build finish time
