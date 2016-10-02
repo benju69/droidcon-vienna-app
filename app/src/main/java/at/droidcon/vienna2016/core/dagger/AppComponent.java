@@ -10,7 +10,6 @@ import at.droidcon.vienna2016.core.dagger.module.DatabaseModule;
 import at.droidcon.vienna2016.core.dagger.module.UtilsModule;
 import at.droidcon.vienna2016.receiver.BootReceiver;
 import at.droidcon.vienna2016.ui.drawer.DrawerActivity;
-import at.droidcon.vienna2016.ui.drawer.DrawerPresenter;
 import at.droidcon.vienna2016.ui.home.HomeFragment;
 import at.droidcon.vienna2016.ui.schedule.day.ScheduleDayFragment;
 import at.droidcon.vienna2016.ui.schedule.pager.SchedulePagerFragment;
@@ -27,8 +26,6 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(DrawerActivity activity);
-
-    void inject(DrawerPresenter presenter);
 
     void inject(SchedulePagerFragment fragment);
 
