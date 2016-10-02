@@ -11,14 +11,17 @@ import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.NotificationCompat;
 import android.text.TextUtils;
 
+import javax.inject.Inject;
+
+import at.droidcon.vienna2016.DroidconApp;
 import at.droidcon.vienna2016.R;
 import at.droidcon.vienna2016.data.app.model.Session;
+import at.droidcon.vienna2016.data.database.dao.SessionsDao;
 import at.droidcon.vienna2016.ui.sessions.details.SessionDetailsActivity;
 import at.droidcon.vienna2016.ui.sessions.details.SessionDetailsActivityIntentBuilder;
 import at.droidcon.vienna2016.utils.App;
 import at.droidcon.vienna2016.utils.Downloader;
-import at.droidcon.vienna2016.utils.Preconditions;
-
+import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import se.emilsjolander.intentbuilder.Extra;
 import se.emilsjolander.intentbuilder.IntentBuilder;
@@ -27,14 +30,26 @@ import timber.log.Timber;
 @IntentBuilder
 public class ReminderReceiver extends BroadcastReceiver {
 
-    @Extra Session session;
+    @Extra Integer sessionId;
+    @Inject SessionsDao sessionsDao;
 
     @Override
     public void onReceive(Context context, Intent intent) {
         Timber.d("Received session reminder");
+        DroidconApp.get(context).component().inject(this);
         ReminderReceiverIntentBuilder.inject(intent, this);
-        Preconditions.checkArgument(session != null);
-        showNotification(context, session);
+        if (sessionId == null) {
+            Timber.e("Can't find sessionId. This should not happen");
+            return;
+        }
+
+        sessionsDao.getSessionById(sessionId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        session -> showNotification(context, session),
+                        throwable -> Timber.e(throwable, "Error finding session with id: %d", sessionId)
+                );
     }
 
     private void showNotification(Context context, Session session) {

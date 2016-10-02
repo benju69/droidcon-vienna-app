@@ -9,6 +9,7 @@ import at.droidcon.vienna2016.core.dagger.module.DataModule;
 import at.droidcon.vienna2016.core.dagger.module.DatabaseModule;
 import at.droidcon.vienna2016.core.dagger.module.UtilsModule;
 import at.droidcon.vienna2016.receiver.BootReceiver;
+import at.droidcon.vienna2016.receiver.reminder.ReminderReceiver;
 import at.droidcon.vienna2016.ui.drawer.DrawerActivity;
 import at.droidcon.vienna2016.ui.home.HomeFragment;
 import at.droidcon.vienna2016.ui.schedule.day.ScheduleDayFragment;
@@ -24,6 +25,8 @@ import dagger.Component;
 @Singleton
 @Component(modules = {AppModule.class, ApiModule.class, DataModule.class, DatabaseModule.class, UtilsModule.class})
 public interface AppComponent {
+
+    void inject(HomeFragment fragment);
 
     void inject(DrawerActivity activity);
 
@@ -45,7 +48,7 @@ public interface AppComponent {
 
     void inject(BootReceiver receiver);
 
-    void inject(HomeFragment fragment);
+    void inject(ReminderReceiver receiver);
 
     final class Initializer {
 

@@ -2,12 +2,6 @@ package at.droidcon.vienna2016.data.database.dao;
 
 import android.database.Cursor;
 
-import at.droidcon.vienna2016.core.moshi.LocalDateTimeAdapter;
-import at.droidcon.vienna2016.data.app.SelectedSessionsMemory;
-import at.droidcon.vienna2016.data.database.DbMapper;
-import at.droidcon.vienna2016.data.database.model.SelectedSession;
-import at.droidcon.vienna2016.data.database.model.Session;
-import at.droidcon.vienna2016.utils.Preconditions;
 import com.squareup.sqlbrite.BriteDatabase;
 
 import org.threeten.bp.LocalDateTime;
@@ -20,6 +14,12 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import at.droidcon.vienna2016.core.moshi.LocalDateTimeAdapter;
+import at.droidcon.vienna2016.data.app.SelectedSessionsMemory;
+import at.droidcon.vienna2016.data.database.DbMapper;
+import at.droidcon.vienna2016.data.database.model.SelectedSession;
+import at.droidcon.vienna2016.data.database.model.Session;
+import at.droidcon.vienna2016.utils.Preconditions;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -44,6 +44,10 @@ public class SessionsDao {
 
     public Observable<List<at.droidcon.vienna2016.data.app.model.Session>> getSessions() {
         return getSessions("SELECT * FROM " + Session.TABLE);
+    }
+
+    public Observable<at.droidcon.vienna2016.data.app.model.Session> getSessionById(int id) {
+        return getSessions("SELECT * FROM " + Session.TABLE + " WHERE " + Session.ID + "=?", Integer.toString(id)).flatMap(Observable::from).first();
     }
 
     public Observable<List<at.droidcon.vienna2016.data.app.model.Session>> getSelectedSessions() {
