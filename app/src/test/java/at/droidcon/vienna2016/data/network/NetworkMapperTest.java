@@ -32,8 +32,8 @@ public class NetworkMapperTest {
     @Test
     public void should_convert_network_speakers_to_app_speakers() {
         // Given
-        Speaker speaker1 = new Speaker(1, "speaker1", "title1", "bio1", "website1", "twitter1", "github1", "gplus1", "xing1", "linkedin1", "photo1");
-        Speaker speaker2 = new Speaker(2, "speaker2", "title2", "bio2", "website2", "twitter2", "github2", "gplus2", "xing2", "linkedin2", "photo2");
+        Speaker speaker1 = new Speaker(1, "speaker1", "title1", "bio1", "website1", "twitter1", "gplus1", "xing1", "linkedin1", "github1", "photo1");
+        Speaker speaker2 = new Speaker(2, "speaker2", "title2", "bio2", "website2", "twitter2", "gplus2", "xing2", "linkedin2", "github2", "photo2");
         List<Speaker> speakers = Arrays.asList(speaker1, speaker2);
 
         // When

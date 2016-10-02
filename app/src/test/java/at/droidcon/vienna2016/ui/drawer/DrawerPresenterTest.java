@@ -2,11 +2,6 @@ package at.droidcon.vienna2016.ui.drawer;
 
 import android.os.Build;
 
-import at.droidcon.vienna2016.BuildConfig;
-import at.droidcon.vienna2016.R;
-import at.droidcon.vienna2016.ui.schedule.pager.SchedulePagerFragment;
-import at.droidcon.vienna2016.ui.speakers.list.SpeakersListFragment;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +9,13 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
+
+import at.droidcon.vienna2016.BuildConfig;
+import at.droidcon.vienna2016.R;
+import at.droidcon.vienna2016.ui.home.HomeFragment;
+import at.droidcon.vienna2016.ui.speakers.list.SpeakersListFragment;
+import at.droidcon.vienna2016.utils.Analytics;
+import at.droidcon.vienna2016.utils.Configuration;
 
 import static com.google.common.truth.Truth.assertThat;
 import static org.mockito.Matchers.any;
@@ -27,21 +29,23 @@ import static org.mockito.Mockito.when;
 public class DrawerPresenterTest {
 
     @Mock DrawerMvp.View view;
+    @Mock Configuration config;
+    @Mock Analytics analytics;
     private DrawerPresenter presenter;
 
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        presenter = new DrawerPresenter(view);
+        presenter = new DrawerPresenter(view, config, analytics);
     }
 
     @Test
-    public void should_automatically_select_my_schedule_when_starting_the_app() {
+    public void should_automatically_select_home_when_starting_the_app() {
         // When
         presenter.onPostCreate(null);
 
         // Then
-        verify(view).showFragment(any(SchedulePagerFragment.class));
+        verify(view).showFragment(any(HomeFragment.class));
     }
 
     @Test
@@ -97,8 +101,9 @@ public class DrawerPresenterTest {
     }
 
     @Test
-    public void should_go_back_when_pressing_back_while_navigation_drawer_is_already_closed_and_category_is_schedule() {
+    public void should_go_back_when_pressing_back_while_navigation_drawer_is_already_closed_and_category_not_home() {
         // Given
+        presenter.selectedItemId = R.id.drawer_nav_schedule;
         presenter.toolbarTitle = R.string.drawer_nav_schedule;
         when(view.isNavigationDrawerOpen()).thenReturn(false);
 
@@ -107,7 +112,7 @@ public class DrawerPresenterTest {
 
         // Then
         assertThat(result).isFalse();
-        verify(view, never()).selectDrawerMenuItem(R.id.drawer_nav_schedule);
+        verify(view, never()).selectDrawerMenuItem(R.id.drawer_nav_home);
         verify(view, never()).closeNavigationDrawer();
     }
 

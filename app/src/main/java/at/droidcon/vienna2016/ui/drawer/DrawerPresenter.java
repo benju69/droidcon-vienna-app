@@ -4,49 +4,45 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
 
-import javax.inject.Inject;
-
-import at.droidcon.vienna2016.DroidconApp;
 import at.droidcon.vienna2016.R;
-import at.droidcon.vienna2016.ui.home.HomeFragment;
-import at.droidcon.vienna2016.ui.venue.VenueConferenceFragment;
-import at.droidcon.vienna2016.ui.venue.VenuePagerFragment;
-import at.droidcon.vienna2016.utils.Analytics;
-import at.droidcon.vienna2016.utils.Configuration;
 import at.droidcon.vienna2016.ui.BaseActivityPresenter;
+import at.droidcon.vienna2016.ui.home.HomeFragment;
 import at.droidcon.vienna2016.ui.schedule.pager.SchedulePagerFragmentBuilder;
 import at.droidcon.vienna2016.ui.settings.SettingsFragment;
 import at.droidcon.vienna2016.ui.speakers.list.SpeakersListFragment;
 import at.droidcon.vienna2016.ui.tweets.TweetsListFragment;
-
+import at.droidcon.vienna2016.ui.venue.VenuePagerFragment;
+import at.droidcon.vienna2016.utils.Analytics;
+import at.droidcon.vienna2016.utils.Configuration;
 import icepick.State;
 
 public class DrawerPresenter extends BaseActivityPresenter<DrawerMvp.View> implements DrawerMvp.Presenter {
 
     @State @StringRes int toolbarTitle;
     @State @IdRes int selectedItemId;
-    @Inject Configuration cfg;
-    @Inject Analytics analytics;
 
-    public DrawerPresenter(DrawerMvp.View view) {
+    private Configuration config;
+    private Analytics analytics;
+
+    public DrawerPresenter(DrawerMvp.View view, Configuration config, Analytics analytics) {
         super(view);
-        DroidconApp.get(view.getContext()).component().inject(this);
+        this.config = config;
+        this.analytics = analytics;
     }
 
-    private @IdRes int getFirstItem() {
-        cfg.refresh();
-        if (cfg.getBoolean("show_home_screen")) {
+    @IdRes private int getFirstItem() {
+        config.refresh();
+        if (config.getBoolean("show_home_screen")) {
             return R.id.drawer_nav_home;
-        }
-        else {
+        } else {
             return R.id.drawer_nav_schedule;
         }
     }
 
     private void checkHiddenEntries() {
-        cfg.refresh();
-        view.showDrawerMenuItem(R.id.drawer_nav_home, cfg.getBoolean("show_home_screen"));
-        view.showDrawerMenuItem(R.id.drawer_nav_tweets, cfg.getBoolean("show_tweets_screen"));
+        config.refresh();
+        view.showDrawerMenuItem(R.id.drawer_nav_home, config.getBoolean("show_home_screen"));
+        view.showDrawerMenuItem(R.id.drawer_nav_tweets, config.getBoolean("show_tweets_screen"));
     }
 
     @Override

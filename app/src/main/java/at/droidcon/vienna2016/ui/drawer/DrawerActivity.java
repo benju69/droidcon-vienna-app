@@ -14,10 +14,13 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import javax.inject.Inject;
+
+import at.droidcon.vienna2016.DroidconApp;
 import at.droidcon.vienna2016.R;
 import at.droidcon.vienna2016.ui.BaseActivity;
-
-import at.droidcon.vienna2016.ui.home.HomeMvp;
+import at.droidcon.vienna2016.utils.Analytics;
+import at.droidcon.vienna2016.utils.Configuration;
 import butterknife.BindView;
 
 public class DrawerActivity extends BaseActivity<DrawerPresenter> implements DrawerMvp.View {
@@ -27,15 +30,20 @@ public class DrawerActivity extends BaseActivity<DrawerPresenter> implements Dra
     @BindView(R.id.drawer_layout) DrawerLayout drawer;
     @BindView(R.id.drawer_navigation) NavigationView navigationView;
 
+    @Inject Configuration config;
+    @Inject Analytics analytics;
+
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
     @Override
     protected DrawerPresenter newPresenter() {
-        return new DrawerPresenter(this);
+        return new DrawerPresenter(this, config, analytics);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        DroidconApp.get(getContext()).component().inject(this);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer);
         setSupportActionBar(toolbar);
@@ -45,16 +53,21 @@ public class DrawerActivity extends BaseActivity<DrawerPresenter> implements Dra
         actionBarDrawerToggle.syncState();
         drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
-            public void onDrawerSlide(View drawerView, float slideOffset) { }
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+            }
 
             @Override
-            public void onDrawerOpened(View drawerView) { presenter.onShow(); }
+            public void onDrawerOpened(View drawerView) {
+                presenter.onShow();
+            }
 
             @Override
-            public void onDrawerClosed(View drawerView) { }
+            public void onDrawerClosed(View drawerView) {
+            }
 
             @Override
-            public void onDrawerStateChanged(int newState) { }
+            public void onDrawerStateChanged(int newState) {
+            }
         });
         navigationView.setNavigationItemSelectedListener(item -> {
             presenter.onNavigationItemSelected(item.getItemId());
@@ -89,7 +102,9 @@ public class DrawerActivity extends BaseActivity<DrawerPresenter> implements Dra
     }
 
     @Override
-    public Context getContext() { return this; }
+    public Context getContext() {
+        return this;
+    }
 
     @Override
     public DrawerMvp.Presenter getPresenter() {
