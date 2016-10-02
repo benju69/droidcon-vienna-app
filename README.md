@@ -2,48 +2,24 @@
 
 Official app for droidcon Vienna 2016
 
-## Features
-
-![droidconat2016 Android screenshots][]
-
-* See all sessions
-* Manage your schedule
-* Consult speakers information
-* Receive a notification when selected sessions are about to begin
+![droidconat2016 Android screenshots][1]
 
 
-## Development Environment
+## Build requirements
 
-This project uses Java 8, Retrolambda, and Lombok.
+### Lombok
 
-Don't forget to install the Java 8 JDK, and the lombok plugin for your IDE before trying to build it.
+Install the Lombok plugin for your IDE before trying to build it.
 
+### Firebase
 
-## Run Unit Tests
+Visit the [Firebase console](https://console.firebase.google.com/), create an app, and export its configuration to `app/google-services.json`
 
-```bash
-./scripts/run-tests-unit.sh
-```
+### Twitter
 
-
-## Run Mock Server
-
-```bash
-cd mockserver
-npm install
-node server
-```
-
-You can then access it through:
-
-```
-http://localhost:8990/
-```
-
-
-## Acknowledgements
-
-This project took some inspiration from the amazing work done for the [Droidcon PL 2015 mobile app][], the [Google I/O app][], and the [DroidKaigi 2016 app][]
+* Create an app on the [Twitter Apps console](https://apps.twitter.com/)
+* Install the [Fabric](https://fabric.io/) IDE plugin, integrate Twitter Kit
+* Update the `gradle.properties` file and update the following variables: `TWITTER_KEY`, `TWITTER_SECRET` with your Fabric consumer key, and consumer secret
 
 
 ## License
@@ -62,7 +38,5 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-[droidconat2016 Android screenshots]: https://raw.githubusercontent.com/Nilhcem/droidconat-2016/master/assets/screenshots/screenshots.jpg
-[Droidcon PL 2015 mobile app]: https://github.com/droidconpl/droidcon-2015-mobile-app
-[Google I/O app]: https://github.com/google/iosched
-[DroidKaigi 2016 app]: https://github.com/konifar/droidkaigi2016/
+
+[1]: https://raw.githubusercontent.com/Nilhcem/droidconat-2016/master/assets/screenshots/screenshots.jpg
