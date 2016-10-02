@@ -1,6 +1,5 @@
 package at.droidcon.vienna2016.ui.schedule.day;
 
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.text.TextUtils;
 import android.view.View;
@@ -8,20 +7,19 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import at.droidcon.vienna2016.R;
-import at.droidcon.vienna2016.data.app.model.ScheduleSlot;
-import at.droidcon.vienna2016.data.app.model.Session;
-import at.droidcon.vienna2016.data.app.model.Speaker;
-import at.droidcon.vienna2016.ui.core.recyclerview.BaseViewHolder;
 import com.squareup.picasso.Picasso;
 
 import org.threeten.bp.LocalDateTime;
 import org.threeten.bp.format.DateTimeFormatter;
 import org.threeten.bp.format.FormatStyle;
-import org.threeten.bp.temporal.ChronoUnit;
 
 import java.util.List;
 
+import at.droidcon.vienna2016.R;
+import at.droidcon.vienna2016.data.app.model.ScheduleSlot;
+import at.droidcon.vienna2016.data.app.model.Session;
+import at.droidcon.vienna2016.data.app.model.Speaker;
+import at.droidcon.vienna2016.ui.core.recyclerview.BaseViewHolder;
 import butterknife.BindView;
 import java8.util.stream.StreamSupport;
 
@@ -114,9 +112,7 @@ public class ScheduleDayEntry extends BaseViewHolder {
     private String formatSessionTime(Session session) {
         LocalDateTime fromTime = session.getFromTime();
         LocalDateTime toTime = session.getToTime();
-        long minutes = ChronoUnit.MINUTES.between(fromTime, toTime);
-        return itemView.getContext().getString(R.string.schedule_day_entry_session_time_format,
-                formatTime(fromTime), formatTime(toTime), minutes);
+        return itemView.getContext().getString(R.string.schedule_day_entry_session_time_format, formatTime(fromTime), formatTime(toTime));
     }
 
     private void bindRoom(Session session, TextView view) {
