@@ -6,13 +6,11 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
 
-import at.droidcon.vienna2016.BuildConfig;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
-import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.Shadows;
 import org.robolectric.annotation.Config;
@@ -20,9 +18,11 @@ import org.robolectric.res.builder.RobolectricPackageManager;
 import org.robolectric.shadows.ShadowActivity;
 import org.robolectric.shadows.ShadowResolveInfo;
 
+import at.droidcon.vienna2016.BuildConfig;
+
 import static com.google.common.truth.Truth.assertThat;
 
-@RunWith(RobolectricGradleTestRunner.class)
+@RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP, packageName = "at.droidcon.vienna2016")
 public class IntentsTest {
 

@@ -2,21 +2,21 @@ package at.droidcon.vienna2016.data.app;
 
 import android.os.Build;
 
-import at.droidcon.vienna2016.BuildConfig;
-import at.droidcon.vienna2016.data.app.model.Session;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.threeten.bp.LocalDateTime;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import at.droidcon.vienna2016.BuildConfig;
+import at.droidcon.vienna2016.data.app.model.Session;
+
 import static com.google.common.truth.Truth.assertThat;
 
-@RunWith(RobolectricGradleTestRunner.class)
+@RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP)
 public class SelectedSessionsMemoryTest {
 

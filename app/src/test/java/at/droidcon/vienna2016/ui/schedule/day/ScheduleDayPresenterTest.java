@@ -2,25 +2,25 @@ package at.droidcon.vienna2016.ui.schedule.day;
 
 import android.os.Build;
 
-import at.droidcon.vienna2016.BuildConfig;
-import at.droidcon.vienna2016.data.app.model.ScheduleDay;
-import at.droidcon.vienna2016.data.app.model.ScheduleSlot;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.threeten.bp.LocalDate;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import at.droidcon.vienna2016.BuildConfig;
+import at.droidcon.vienna2016.data.app.model.ScheduleDay;
+import at.droidcon.vienna2016.data.app.model.ScheduleSlot;
+
 import static org.mockito.Mockito.verify;
 
-@RunWith(RobolectricGradleTestRunner.class)
+@RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP)
 public class ScheduleDayPresenterTest {
 

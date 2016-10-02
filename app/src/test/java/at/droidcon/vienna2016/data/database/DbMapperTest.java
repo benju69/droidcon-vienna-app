@@ -2,12 +2,6 @@ package at.droidcon.vienna2016.data.database;
 
 import android.os.Build;
 
-import at.droidcon.vienna2016.BuildConfig;
-import at.droidcon.vienna2016.core.moshi.LocalDateTimeAdapter;
-import at.droidcon.vienna2016.data.app.AppMapper;
-import at.droidcon.vienna2016.data.app.model.Room;
-import at.droidcon.vienna2016.data.app.model.Session;
-import at.droidcon.vienna2016.data.app.model.Speaker;
 import com.squareup.moshi.Moshi;
 
 import org.junit.Before;
@@ -15,7 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.threeten.bp.LocalDateTime;
 
@@ -23,11 +17,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import at.droidcon.vienna2016.BuildConfig;
+import at.droidcon.vienna2016.core.moshi.LocalDateTimeAdapter;
+import at.droidcon.vienna2016.data.app.AppMapper;
+import at.droidcon.vienna2016.data.app.model.Room;
+import at.droidcon.vienna2016.data.app.model.Session;
+import at.droidcon.vienna2016.data.app.model.Speaker;
+
 import static com.google.common.truth.Truth.assertThat;
 import static java.util.Collections.singletonList;
 import static org.mockito.Mockito.when;
 
-@RunWith(RobolectricGradleTestRunner.class)
+@RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP)
 public class DbMapperTest {
 

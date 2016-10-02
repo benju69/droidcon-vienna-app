@@ -3,28 +3,27 @@ package at.droidcon.vienna2016.ui.schedule.pager;
 import android.os.Build;
 import android.os.Bundle;
 
-import at.droidcon.vienna2016.BuildConfig;
-import at.droidcon.vienna2016.core.rxjava.TestSchedulerProxy;
-import at.droidcon.vienna2016.data.app.DataProvider;
-import at.droidcon.vienna2016.data.app.model.Schedule;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
 import java.util.concurrent.TimeUnit;
 
+import at.droidcon.vienna2016.BuildConfig;
+import at.droidcon.vienna2016.core.rxjava.TestSchedulerProxy;
+import at.droidcon.vienna2016.data.app.DataProvider;
+import at.droidcon.vienna2016.data.app.model.Schedule;
 import rx.Observable;
 
 import static com.google.common.truth.Truth.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(RobolectricGradleTestRunner.class)
+@RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP)
 public class SchedulePagerPresenterTest {
 
