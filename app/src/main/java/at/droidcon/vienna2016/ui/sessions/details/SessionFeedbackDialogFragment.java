@@ -29,6 +29,7 @@ import at.droidcon.vienna2016.utils.Analytics;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import timber.log.Timber;
 
 /**
  * Created by helmuth on 21/08/16.
@@ -98,7 +99,9 @@ public class SessionFeedbackDialogFragment extends AppCompatDialogFragment {
                 .child(id)
                 .child(String.valueOf(session.getId()))
                 .setValue(feedback, (err, ref) -> {
-                    if (err != null) { System.console().printf("Firebase error: %s\n", err.getMessage()); }
+                    if (err != null) {
+                        Timber.e("Firebase error: %s", err.getMessage());
+                    }
                 });
     }
 
