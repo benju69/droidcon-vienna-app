@@ -7,10 +7,11 @@ buildscript {
         maven { url 'https://maven.fabric.io/public' }
     }
     dependencies {
-        classpath 'me.tatarka:gradle-retrolambda:3.2.5'
+        classpath 'me.tatarka:gradle-retrolambda:3.3.0'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-        classpath 'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.0.1'
+        classpath 'com.google.gms:google-services:3.0.0'
         classpath 'io.fabric.tools:gradle:1.+'
+        classpath 'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.1'
     }
 }
 
@@ -32,7 +33,7 @@ def gitSha = 'git rev-parse --short HEAD'.execute([], project.rootDir).text.trim
 
 android {
     compileSdkVersion 24
-    buildToolsVersion '24.0.2'
+    buildToolsVersion '24.0.3'
 
     defaultConfig {
         applicationId 'at.droidcon.vienna2016'
@@ -96,17 +97,18 @@ android {
 }
 
 ext.butterknifeVersion = '8.4.0'
-ext.daggerVersion = '2.6.1'
+ext.daggerVersion = '2.7'
 ext.fragmentargsVersion = '3.0.2'
 ext.icepickVersion = '3.2.0'
 ext.intentbuilderVersion = '0.14.0'
 ext.okhttpVersion = '3.4.1'
 ext.retrofitVersion = '2.1.0'
-ext.supportVersion = '24.1.1'
-ext.playVersion = '9.4.0'
+ext.supportVersion = '24.2.1'
+ext.playVersion = '9.6.1'
 
 dependencies {
-    compile "com.android.support:support-v4:$supportVersion"
+    compile "com.android.support:support-core-ui:$supportVersion"
+    compile "com.android.support:support-fragment:$supportVersion"
     compile "com.android.support:support-annotations:$supportVersion"
     compile "com.android.support:appcompat-v7:$supportVersion"
     compile "com.android.support:recyclerview-v7:$supportVersion"
@@ -114,19 +116,34 @@ dependencies {
     compile "com.android.support:cardview-v7:$supportVersion"
     compile "com.android.support:design:$supportVersion"
     compile "com.android.support:customtabs:$supportVersion"
-    
+
     compile "com.google.android.gms:play-services-base:$playVersion"
+    compile "com.google.firebase:firebase-crash:$playVersion"
+    compile "com.google.firebase:firebase-messaging:$playVersion"
+    compile "com.google.firebase:firebase-config:$playVersion"
+    compile "com.google.firebase:firebase-core:$playVersion"
+    compile "com.google.firebase:firebase-database:$playVersion"
+
+    provided 'org.projectlombok:lombok:1.16.10'
+
+    compile 'net.sourceforge.streamsupport:streamsupport:1.5.1'
 
     compile "com.google.dagger:dagger:$daggerVersion"
     apt "com.google.dagger:dagger-compiler:$daggerVersion"
 
     compile "com.squareup.okhttp3:okhttp:$okhttpVersion"
     compile "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.0.2'
     compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
     compile "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
     compile "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion"
 
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex:rxjava:1.2.0'
 
+    compile 'com.jakewharton.timber:timber:4.3.1'
+    compile 'com.squareup.moshi:moshi:1.2.0'
 
     compile "com.jakewharton:butterknife:$butterknifeVersion"
     apt "com.jakewharton:butterknife-compiler:$butterknifeVersion"
@@ -140,30 +157,20 @@ dependencies {
     compile "com.hannesdorfmann.fragmentargs:annotation:$fragmentargsVersion"
     apt "com.hannesdorfmann.fragmentargs:processor:$fragmentargsVersion"
 
+    compile 'com.github.chrisbanes:PhotoView:1.3.0'
 
-    compile('com.twitter.sdk.android:twitter:2.0.0@aar') {
+    compile 'com.squareup.sqlbrite:sqlbrite:0.7.0'
+
+    compile 'com.jakewharton.threetenabp:threetenabp:1.0.4'
+
+    compile('com.twitter.sdk.android:twitter:2.0.1@aar') {
         transitive = true;
     }
-    compile 'net.sourceforge.streamsupport:streamsupport:1.5.1'
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.0.2'
-    compile 'io.reactivex:rxandroid:1.2.1'
-    compile 'io.reactivex:rxjava:1.1.9'
-    compile 'com.jakewharton.timber:timber:4.3.0'
-    compile 'com.squareup.moshi:moshi:1.2.0'
-    compile 'com.github.chrisbanes:PhotoView:1.3.0'
-    compile 'com.squareup.sqlbrite:sqlbrite:0.7.0'
-    compile 'com.jakewharton.threetenabp:threetenabp:1.0.4'
-    compile 'com.google.firebase:firebase-crash:9.4.0'
-    compile 'com.google.firebase:firebase-messaging:9.4.0'
-    compile 'com.google.firebase:firebase-config:9.4.0'
-    compile 'com.google.firebase:firebase-core:9.4.0'
-    compile 'com.google.firebase:firebase-database:9.4.0'
+
     testCompile 'junit:junit:4.12'
-    testCompile 'com.google.truth:truth:0.29'
+    testCompile 'com.google.truth:truth:0.30'
     testCompile 'org.mockito:mockito-core:1.9.5'
     testCompile 'org.robolectric:robolectric:3.1.2'
-    provided 'org.projectlombok:lombok:1.16.10'
 }
 
 // print build finish time
