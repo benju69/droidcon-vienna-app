@@ -1,3 +1,9 @@
+# Firebase configuration
+google-services.json
+
+# Fabric configuration
+fabric.properties
+
 # Temporary files
 *~
 \#*#
