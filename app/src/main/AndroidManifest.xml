@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
         android:name="at.droidcon.vienna2016.DroidconApp"
@@ -40,14 +40,6 @@
                 android:value="at.droidcon.vienna2016.ui.drawer.DrawerActivity"/>
         </activity>
 
-        <activity
-            android:name="at.droidcon.vienna2016.ui.venue.ZoomableImageActivity"
-            android:parentActivityName="at.droidcon.vienna2016.ui.drawer.DrawerActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="at.droidcon.vienna2016.ui.drawer.DrawerActivity"/>
-        </activity>
-
         <receiver
             android:name="at.droidcon.vienna2016.receiver.BootReceiver"
             android:enabled="false">
@@ -57,8 +49,9 @@
             </intent-filter>
         </receiver>
         <receiver android:name="at.droidcon.vienna2016.receiver.reminder.ReminderReceiver"/>
+
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="a957eccaa1baac2cd3e019c814f007c63cda8a6e" />
+            android:value="a957eccaa1baac2cd3e019c814f007c63cda8a6e"/>
     </application>
 </manifest>

@@ -45,22 +45,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/venue_afterparty_info"/>
-
         </LinearLayout>
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/venue_afterparty_rooms"
-            android:layout_marginTop="@dimen/activity_margin"
-            android:text="@string/venue_see_rooms"
-            android:visibility="gone"
-            android:theme="@style/AppTheme.AccentButton"
-            style="@style/Venue.Button"/>
-
-        <android.support.v7.widget.AppCompatButton
             android:id="@+id/venue_afterparty_locate"
+            style="@style/Venue.Button"
             android:layout_marginBottom="@dimen/activity_margin"
             android:text="@string/venue_see_location"
-            android:theme="@style/AppTheme.AccentButton"
-            style="@style/Venue.Button"/>
+            android:theme="@style/AppTheme.AccentButton"/>
     </LinearLayout>
 </ScrollView>

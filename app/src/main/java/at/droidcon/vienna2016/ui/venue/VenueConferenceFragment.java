@@ -1,6 +1,5 @@
 package at.droidcon.vienna2016.ui.venue;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,7 +15,6 @@ import at.droidcon.vienna2016.ui.BaseFragment;
 import at.droidcon.vienna2016.ui.BaseFragmentPresenter;
 import at.droidcon.vienna2016.utils.Intents;
 import at.droidcon.vienna2016.utils.Views;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -41,11 +39,6 @@ public class VenueConferenceFragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initPhotoSize();
-    }
-
-    @OnClick(R.id.venue_conference_rooms)
-    void openRoomsPlan() {
-        startActivity(new Intent(getContext(), ZoomableImageActivity.class));
     }
 
     @OnClick(R.id.venue_conference_locate)
