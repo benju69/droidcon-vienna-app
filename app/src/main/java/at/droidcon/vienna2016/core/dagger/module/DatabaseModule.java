@@ -17,7 +17,7 @@ import timber.log.Timber;
 @Module
 public class DatabaseModule {
 
-    static final String TAG = "database";
+    private static final String TAG = "database";
 
     @Provides @Singleton SQLiteOpenHelper provideSQLiteOpenHelper(Application application) {
         return new DbOpenHelper(application);

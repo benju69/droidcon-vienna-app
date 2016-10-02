@@ -4,10 +4,10 @@ import android.app.Application;
 import android.content.Context;
 
 import com.jakewharton.threetenabp.AndroidThreeTen;
-import at.droidcon.vienna2016.core.dagger.AppComponent;
-
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
+
+import at.droidcon.vienna2016.core.dagger.AppComponent;
 import io.fabric.sdk.android.Fabric;
 import timber.log.Timber;
 

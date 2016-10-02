@@ -5,8 +5,6 @@ import android.content.SharedPreferences;
 import android.support.v7.preference.PreferenceManager;
 
 import com.jakewharton.picasso.OkHttp3Downloader;
-import at.droidcon.vienna2016.core.dagger.OkHttpModule;
-import at.droidcon.vienna2016.core.moshi.LocalDateTimeAdapter;
 import com.squareup.moshi.Moshi;
 import com.squareup.picasso.Picasso;
 
@@ -14,13 +12,14 @@ import java.io.File;
 
 import javax.inject.Singleton;
 
+import at.droidcon.vienna2016.core.moshi.LocalDateTimeAdapter;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import timber.log.Timber;
 
-@Module(includes = OkHttpModule.class)
+@Module
 public final class DataModule {
 
     private static final long DISK_CACHE_SIZE = 31_457_280; // 30MB
@@ -35,10 +34,10 @@ public final class DataModule {
                 .build();
     }
 
-    @Provides @Singleton OkHttpClient.Builder provideOkHttpClientBuilder(Application app) {
+    @Provides @Singleton OkHttpClient provideOkHttpClient(Application app) {
         File cacheDir = new File(app.getCacheDir(), "http");
         Cache cache = new Cache(cacheDir, DISK_CACHE_SIZE);
-        return new OkHttpClient.Builder().cache(cache);
+        return new OkHttpClient.Builder().cache(cache).build();
     }
 
     @Provides @Singleton Picasso providePicasso(Application app, OkHttpClient client) {
