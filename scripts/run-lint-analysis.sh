@@ -3,6 +3,6 @@
 # avoid virtual desktop jumps at mac terminal on test run
 export JAVA_TOOL_OPTIONS='-Djava.awt.headless=true'
 
-./gradlew :app:lintProductionRelease
+./gradlew :app:lintRelease
 
-echo "lint reports: $(pwd)/app/build/outputs/lint-results-productionRelease.html"
+echo "lint reports: $(pwd)/app/build/outputs/lint-results-release.html"

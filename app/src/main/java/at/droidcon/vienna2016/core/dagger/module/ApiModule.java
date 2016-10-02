@@ -1,8 +1,6 @@
 package at.droidcon.vienna2016.core.dagger.module;
 
-import android.app.Application;
-
-import at.droidcon.vienna2016.data.network.ApiEndpoint;
+import at.droidcon.vienna2016.BuildConfig;
 import at.droidcon.vienna2016.data.network.DroidconService;
 import com.squareup.moshi.Moshi;
 
@@ -18,14 +16,10 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
 @Module
 public final class ApiModule {
 
-    @Provides @Singleton ApiEndpoint provideApiEndpoint(Application context) {
-        return ApiEndpoint.get(context);
-    }
-
-    @Provides @Singleton Retrofit provideRetrofit(OkHttpClient client, Moshi moshi, ApiEndpoint endpoint) {
+    @Provides @Singleton Retrofit provideRetrofit(OkHttpClient client, Moshi moshi) {
         return new Retrofit.Builder()
                 .client(client)
-                .baseUrl(endpoint.url)
+                .baseUrl(BuildConfig.API_ENDPOINT)
                 .addConverterFactory(MoshiConverterFactory.create(moshi))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();

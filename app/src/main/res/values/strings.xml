@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Core -->
-    <string name="core_app_name">droidcon Vienna 2016</string>
+    <string name="app_name">droidcon Vienna 2016</string>
 
     <!-- Connection error -->
     <string name="connection_error">Connection error</string>

@@ -44,7 +44,6 @@ public class AppTest {
     @Test
     public void should_return_formatted_string_version() {
         // Given
-        assume().withFailureMessage("Do not test internal builds").that(BuildConfig.INTERNAL_BUILD).isFalse();
         String expected = BuildConfig.VERSION_NAME + " (#" + BuildConfig.VERSION_CODE + ")";
 
         // When

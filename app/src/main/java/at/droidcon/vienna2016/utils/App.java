@@ -23,11 +23,7 @@ public final class App {
     }
 
     public static String getVersion() {
-        String version = String.format(Locale.US, "%s (#%d)", BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE);
-        if (BuildConfig.INTERNAL_BUILD) {
-            version = String.format(Locale.US, "%s — commit %s", version, BuildConfig.GIT_SHA);
-        }
-        return version;
+        return String.format(Locale.US, "%s (#%d)", BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE);
     }
 
     public static void setExactAlarm(AlarmManager alarmManager, long triggerAtMillis, PendingIntent operation) {
