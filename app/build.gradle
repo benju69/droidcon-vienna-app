@@ -8,7 +8,6 @@ buildscript {
     }
     dependencies {
         classpath 'me.tatarka:gradle-retrolambda:3.3.0'
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath 'com.google.gms:google-services:3.0.0'
         classpath 'io.fabric.tools:gradle:1.+'
         classpath 'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.1'
@@ -24,7 +23,6 @@ repositories {
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 apply plugin: 'me.tatarka.retrolambda'
-apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'com.android.application'
 apply from: rootProject.file('settings/gradle/jacoco.gradle')
 apply from: rootProject.file('settings/gradle/sonarqube.gradle')
@@ -34,9 +32,8 @@ def gitSha = 'git rev-parse --short HEAD'.execute([], project.rootDir).text.trim
 android {
     compileSdkVersion 25
     buildToolsVersion '25.0.2'
-
     defaultConfig {
-        applicationId 'at.droidcon.vienna2016'
+        applicationId 'fr.androidmakers'
         versionCode 13
         versionName '1.0.9'
 
@@ -48,7 +45,6 @@ android {
         buildConfigField 'String', 'API_ENDPOINT', "\"https://droidcon.at/api/v1/\""
         vectorDrawables.useSupportLibrary = true
     }
-
     buildTypes {
         debug {
             buildConfigField 'String', 'TWITTER_KEY', "\"${TWITTER_KEY}\""
@@ -81,12 +77,10 @@ android {
             signingConfig signingConfigs.debug
         }
     }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
     packagingOptions {
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
@@ -94,14 +88,16 @@ android {
         exclude 'META-INF/notice.txt'
         exclude 'META-INF/services/javax.annotation.processing.Processor'
     }
+    productFlavors {
+    }
 }
 
-ext.butterknifeVersion = '8.4.0'
+ext.butterknifeVersion = '8.5.1'
 ext.daggerVersion = '2.7'
 ext.fragmentargsVersion = '3.0.2'
 ext.icepickVersion = '3.2.0'
 ext.intentbuilderVersion = '0.14.0'
-ext.okhttpVersion = '3.4.1'
+ext.okhttpVersion = '3.6.0'
 ext.retrofitVersion = '2.1.0'
 ext.supportVersion = '25.1.1'
 ext.playVersion = '10.2.0'
@@ -125,12 +121,9 @@ dependencies {
     compile "com.google.firebase:firebase-database:$playVersion"
 
     provided 'org.projectlombok:lombok:1.16.10'
-
     compile 'net.sourceforge.streamsupport:streamsupport:1.5.1'
-
     compile "com.google.dagger:dagger:$daggerVersion"
-    apt "com.google.dagger:dagger-compiler:$daggerVersion"
-
+    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
     compile "com.squareup.okhttp3:okhttp:$okhttpVersion"
     compile "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
     compile 'com.squareup.picasso:picasso:2.5.2'
@@ -146,16 +139,16 @@ dependencies {
     compile 'com.squareup.moshi:moshi:1.2.0'
 
     compile "com.jakewharton:butterknife:$butterknifeVersion"
-    apt "com.jakewharton:butterknife-compiler:$butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
 
     compile "frankiesardo:icepick:$icepickVersion"
     provided "frankiesardo:icepick-processor:$icepickVersion"
 
     compile "se.emilsjolander:intentbuilder-api:$intentbuilderVersion"
-    apt "se.emilsjolander:intentbuilder-compiler:$intentbuilderVersion"
+    annotationProcessor "se.emilsjolander:intentbuilder-compiler:$intentbuilderVersion"
 
     compile "com.hannesdorfmann.fragmentargs:annotation:$fragmentargsVersion"
-    apt "com.hannesdorfmann.fragmentargs:processor:$fragmentargsVersion"
+    annotationProcessor "com.hannesdorfmann.fragmentargs:processor:$fragmentargsVersion"
 
     compile 'com.squareup.sqlbrite:sqlbrite:0.7.0'
 
